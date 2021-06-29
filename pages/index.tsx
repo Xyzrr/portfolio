@@ -2,21 +2,22 @@ import * as S from "../styles/index.styles";
 
 import Head from "next/head";
 import Image from "next/image";
+import moment from "moment";
 
 const projects = [
   {
     name: "Spatial Video Chat",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/harbor.png",
+    imageSize: { width: 984, height: 745 },
     href: "harbor",
     size: 2,
   },
   {
     name: "WYSIWYG Document Editor",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/wysiwyg.png",
+    imageSize: { width: 1210, height: 694 },
     href: "wysiwyg",
     size: 2,
   },
@@ -31,56 +32,56 @@ const projects = [
   {
     name: "Vega Visualization Editor",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/vega.png",
+    imageSize: { width: 1210, height: 694 },
     href: "vega",
     size: 2,
   },
   {
     name: "Multiplayer Tetris",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/tetris.png",
+    imageSize: { width: 460, height: 262 },
     href: "tetris",
     size: 1,
   },
   {
     name: "Interactive Comments",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/comments.png",
+    imageSize: { width: 984, height: 746 },
     href: "comments",
     size: 2,
   },
   {
     name: "Voxel World",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/voxels.png",
+    imageSize: { width: 984, height: 478 },
     href: "voxels",
     size: 2,
   },
   {
     name: "Halite III Bot",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/halite.png",
+    imageSize: { width: 460, height: 460 },
     href: "halite",
     size: 1,
   },
   {
     name: "Q-Learning Simulator",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/qlearning.png",
+    imageSize: { width: 460, height: 293 },
     href: "qlearning",
     size: 1,
   },
   {
     name: "AI Snake",
     publishedAt: new Date("May 2021"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/snake.png",
+    imageSize: { width: 460, height: 431 },
     href: "snake",
     size: 1,
   },
@@ -122,6 +123,10 @@ export const Home: React.FC = () => {
         <title>John Qian</title>
         <meta name="description" content="Product and Eng" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <main>
@@ -147,7 +152,12 @@ export const Home: React.FC = () => {
                             height={project.imageSize.height}
                           />
                         </S.ProjectImage>
-                        <S.ProjectTitle>{project.name}</S.ProjectTitle>
+                        <S.ProjectText>
+                          <S.ProjectTitle>{project.name}</S.ProjectTitle>
+                          <S.ProjectDate>
+                            {moment(project.publishedAt).format("MMMM YY")}
+                          </S.ProjectDate>
+                        </S.ProjectText>
                       </S.Project>
                     );
                   })}

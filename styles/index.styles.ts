@@ -3,7 +3,9 @@ import styled, { css } from "styled-components";
 export const Title = styled.h1`
   text-align: center;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
+  margin-bottom: 64px;
+  margin-top: 16px;
 `;
 
 export const Container = styled.div`
@@ -18,7 +20,7 @@ export const ProjectsRow = styled.div`
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 `;
 
 export const Project = styled.div<{ size: number; changeOrder?: boolean }>`
@@ -47,10 +49,20 @@ export const Project = styled.div<{ size: number; changeOrder?: boolean }>`
 
 export const ProjectImage = styled.div``;
 
+export const ProjectText = styled.div`
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const ProjectTitle = styled.h2`
-  text-transform: uppercase;
-  font-size: 14px;
   font-weight: 400;
-  margin-top: 4px;
   color: #333;
+  margin: 0;
+  font-size: 15px;
+`;
+
+export const ProjectDate = styled.span`
+  color: #999;
+  font-size: 15px;
 `;
