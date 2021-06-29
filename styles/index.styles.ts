@@ -56,7 +56,7 @@ export const ProjectText = styled.div`
 `;
 
 export const ProjectTitle = styled.h2`
-  font-weight: 400;
+  font-weight: 600;
   color: #333;
   margin: 0;
   font-size: 15px;
@@ -65,4 +65,5 @@ export const ProjectTitle = styled.h2`
 export const ProjectDate = styled.span`
   color: #999;
   font-size: 15px;
+  flex-shrink: 0;
 `;
