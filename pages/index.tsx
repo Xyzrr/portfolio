@@ -15,7 +15,7 @@ const projects = [
   },
   {
     name: "WYSIWYG Document Editor",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("March 2021"),
     imageSrc: "/wysiwyg.png",
     imageSize: { width: 984, height: 610 },
     href: "wysiwyg",
@@ -23,7 +23,7 @@ const projects = [
   },
   {
     name: "Vega Platformer",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("December 2020"),
     imageSrc: "/platformer.png",
     imageSize: { width: 608, height: 400 },
     href: "platformer",
@@ -31,7 +31,7 @@ const projects = [
   },
   {
     name: "Vega Visualization Editor",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("December 2020"),
     imageSrc: "/vega.png",
     imageSize: { width: 984, height: 646 },
     href: "vega",
@@ -39,7 +39,7 @@ const projects = [
   },
   {
     name: "Multiplayer Tetris",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("February 2020"),
     imageSrc: "/tetris.png",
     imageSize: { width: 460, height: 262 },
     href: "tetris",
@@ -47,7 +47,7 @@ const projects = [
   },
   {
     name: "Interactive Comments",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("June 2020"),
     imageSrc: "/comments.png",
     imageSize: { width: 984, height: 482 },
     href: "comments",
@@ -55,23 +55,15 @@ const projects = [
   },
   {
     name: "Voxel World",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("December 2020"),
     imageSrc: "/voxels.png",
     imageSize: { width: 984, height: 478 },
     href: "voxels",
     size: 2,
   },
   {
-    name: "Halite III Bot",
-    publishedAt: new Date("May 2021"),
-    imageSrc: "/halite.png",
-    imageSize: { width: 460, height: 460 },
-    href: "halite",
-    size: 1,
-  },
-  {
     name: "Q-Learning Simulator",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("December 2019"),
     imageSrc: "/qlearning.png",
     imageSize: { width: 460, height: 293 },
     href: "qlearning",
@@ -79,15 +71,23 @@ const projects = [
   },
   {
     name: "AI Snake",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("February 2019"),
     imageSrc: "/snake.png",
     imageSize: { width: 460, height: 431 },
     href: "snake",
     size: 1,
   },
   {
+    name: "Halite III Bot",
+    publishedAt: new Date("January 2019"),
+    imageSrc: "/halite.png",
+    imageSize: { width: 460, height: 460 },
+    href: "halite",
+    size: 1,
+  },
+  {
     name: "Pre-University",
-    publishedAt: new Date("May 2021"),
+    publishedAt: new Date("September 2017"),
     imageSrc: "/platformer.png",
     imageSize: { width: 608, height: 400 },
     href: "highschool",
@@ -155,7 +155,7 @@ export const Home: React.FC = () => {
                         <S.ProjectText>
                           <S.ProjectTitle>{project.name}</S.ProjectTitle>
                           <S.ProjectDate>
-                            {moment(project.publishedAt).format("MMMM YY")}
+                            {moment(project.publishedAt).format("MMM 'YY")}
                           </S.ProjectDate>
                         </S.ProjectText>
                       </S.Project>
