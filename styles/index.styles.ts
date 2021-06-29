@@ -47,7 +47,13 @@ export const Project = styled.div<{ size: number; changeOrder?: boolean }>`
   }
 `;
 
-export const ProjectImage = styled.div``;
+export const ProjectImage = styled.div`
+  border-radius: 4px;
+  overflow: hidden;
+  & > div {
+    display: block !important;
+  }
+`;
 
 export const ProjectText = styled.div`
   margin-top: 6px;
