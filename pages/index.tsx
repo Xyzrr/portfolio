@@ -23,7 +23,7 @@ const projects = [
   },
   {
     name: "Vega Platformer",
-    publishedAt: new Date("December 2020"),
+    publishedAt: new Date("November 2020"),
     imageSrc: "/platformer.png",
     imageSize: { width: 608, height: 400 },
     href: "platformer",
@@ -31,7 +31,7 @@ const projects = [
   },
   {
     name: "Vega Visualization Editor",
-    publishedAt: new Date("December 2020"),
+    publishedAt: new Date("November 2020"),
     imageSrc: "/vega.png",
     imageSize: { width: 984, height: 646 },
     href: "vega",
@@ -88,8 +88,8 @@ const projects = [
   {
     name: "Pre-University",
     publishedAt: new Date("September 2017"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "/highschool.png",
+    imageSize: { width: 492, height: 274 },
     href: "highschool",
     size: 1,
   },
@@ -124,13 +124,23 @@ export const Home: React.FC = () => {
         <meta name="description" content="Product and Eng" />
         <link rel="icon" href="/favicon.ico" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
           rel="stylesheet"
         />
       </Head>
 
       <main>
-        <S.Title>John Qian</S.Title>
+        <S.Intro>
+          <S.Container>
+            <S.IntroContent>
+              <S.Title>Projects</S.Title>
+              <S.Description>
+                This is a mix of things I was paid to work on and things I
+                worked on for fun.
+              </S.Description>
+            </S.IntroContent>
+          </S.Container>
+        </S.Intro>
         <S.Container>
           <S.Projects>
             {rows.map((row, i) => {
@@ -139,6 +149,7 @@ export const Home: React.FC = () => {
                   {row.map((project, j) => {
                     return (
                       <S.Project
+                        href={project.href}
                         key={project.name}
                         size={project.size}
                         changeOrder={
