@@ -12,7 +12,7 @@ export const Intro = styled.div`
 export const IntroContent = styled.div`
   margin: 0 32px;
   padding: 64px 0 32px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e6e6e6;
 `;
 
 export const Title = styled.h1`
