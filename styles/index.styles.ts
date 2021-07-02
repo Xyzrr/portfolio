@@ -39,7 +39,8 @@ export const ProjectImage = styled.div`
   border-radius: 4px;
   overflow: hidden;
   height: fit-content;
-  & > div {
+  & > div,
+  video {
     display: block !important;
   }
   video {
