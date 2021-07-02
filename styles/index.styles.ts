@@ -10,19 +10,27 @@ export const Intro = styled.div`
 `;
 
 export const IntroContent = styled.div`
-  margin: 0 32px;
-  padding: 64px 0 32px;
-  border-bottom: 1px solid #e6e6e6;
+  margin: 0 auto;
+  padding: 64px 32px 0;
+  max-width: 760px;
 `;
 
 export const Title = styled.h1`
   font-weight: 300;
   font-size: 28px;
-  margin-top: 0;
+  max-width: 700px;
+  margin: 0 auto 12px;
 `;
 
 export const Description = styled.div`
   color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+export const Divider = styled.div`
+  margin-top: 32px;
+  border-bottom: 1px solid #e6e6e6;
 `;
 
 export const Projects = styled.div`

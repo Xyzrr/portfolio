@@ -136,8 +136,14 @@ export const Home: React.FC = () => {
               <S.Title>Projects</S.Title>
               <S.Description>
                 This is a mix of things I was paid to work on and things I
-                worked on for fun.
+                worked on for fun. If you're a recruiter, you may be surprised
+                to find that the content here reads more like a journal than a
+                portfolio; I detail my failures as much as my accomplishments.
+                That's because impressing you is only a secondary goal of this
+                page; its primary purpose is to help me figure out what to work
+                on next.
               </S.Description>
+              <S.Divider />
             </S.IntroContent>
           </S.Container>
         </S.Intro>
