@@ -38,8 +38,12 @@ export const ProjectsRow = styled.div`
 export const ProjectImage = styled.div`
   border-radius: 4px;
   overflow: hidden;
+  height: fit-content;
   & > div {
     display: block !important;
+  }
+  video {
+    width: 100%;
   }
 `;
 

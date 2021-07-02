@@ -16,7 +16,7 @@ const projects = [
   {
     name: "WYSIWYG Document Editor",
     publishedAt: new Date("March 2021"),
-    imageSrc: "/wysiwyg.png",
+    imageSrc: "https://storage.googleapis.com/john-portfolio/wysiwyg.mp4",
     imageSize: { width: 984, height: 610 },
     href: "wysiwyg",
     size: 2,
@@ -24,8 +24,8 @@ const projects = [
   {
     name: "Vega Platformer",
     publishedAt: new Date("November 2020"),
-    imageSrc: "/platformer.png",
-    imageSize: { width: 608, height: 400 },
+    imageSrc: "https://storage.googleapis.com/john-portfolio/platformer.mp4",
+    imageSize: { width: 460, height: 277 },
     href: "platformer",
     size: 1,
   },
@@ -56,16 +56,16 @@ const projects = [
   {
     name: "Voxel World",
     publishedAt: new Date("December 2020"),
-    imageSrc: "/voxels.png",
-    imageSize: { width: 984, height: 478 },
+    imageSrc: "https://storage.googleapis.com/john-portfolio/voxels.mp4",
+    imageSize: { width: 984, height: 553 },
     href: "voxels",
     size: 2,
   },
   {
     name: "Q-Learning Simulator",
     publishedAt: new Date("December 2019"),
-    imageSrc: "/qlearning.png",
-    imageSize: { width: 460, height: 293 },
+    imageSrc: "https://storage.googleapis.com/john-portfolio/qlearning.mp4",
+    imageSize: { width: 460, height: 338 },
     href: "qlearning",
     size: 1,
   },
@@ -80,7 +80,7 @@ const projects = [
   {
     name: "Halite III Bot",
     publishedAt: new Date("January 2019"),
-    imageSrc: "/halite.png",
+    imageSrc: "https://storage.googleapis.com/john-portfolio/halite.mp4",
     imageSize: { width: 460, height: 460 },
     href: "halite",
     size: 1,
@@ -89,7 +89,7 @@ const projects = [
     name: "Pre-University",
     publishedAt: new Date("September 2017"),
     imageSrc: "/highschool.png",
-    imageSize: { width: 492, height: 274 },
+    imageSize: { width: 460, height: 256 },
     href: "highschool",
     size: 1,
   },
@@ -157,11 +157,15 @@ export const Home: React.FC = () => {
                         }
                       >
                         <S.ProjectImage>
-                          <Image
-                            src={project.imageSrc}
-                            width={project.imageSize.width}
-                            height={project.imageSize.height}
-                          />
+                          {project.imageSrc.substr(-3) === "mp4" ? (
+                            <video src={project.imageSrc} autoPlay muted loop />
+                          ) : (
+                            <Image
+                              src={project.imageSrc}
+                              width={project.imageSize.width}
+                              height={project.imageSize.height}
+                            />
+                          )}
                         </S.ProjectImage>
                         <S.ProjectText>
                           <S.ProjectTitle>{project.name}</S.ProjectTitle>
