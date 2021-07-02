@@ -1,7 +1,7 @@
 import * as S from "../styles/project.styles";
 import Head from "next/head";
 
-export const Home: React.FC = () => {
+export const HalitePage: React.FC = () => {
   return (
     <>
       <Head>
@@ -18,12 +18,10 @@ export const Home: React.FC = () => {
           <S.Title>Halite III Bot</S.Title>
           <p>
             Two Sigma annually runs a very fun AI programming competition called{" "}
-            <S.Link href="https://halite.io/">Halite</S.Link>. I competed in the
-            third edition and ranked{" "}
-            <S.Link href="https://2018.halite.io/user/?user_id=8432">
-              #29
-            </S.Link>{" "}
-            of ~4000 players, putting me at #3 among US university students.
+            <a href="https://halite.io/">Halite</a>. I competed in the third
+            edition and ranked{" "}
+            <a href="https://2018.halite.io/user/?user_id=8432">#29</a> of ~4000
+            players, putting me at #3 among US university students.
           </p>
           <p>
             I didn't use any machine learning for my bot. Instead I used a
@@ -32,8 +30,7 @@ export const Home: React.FC = () => {
             turn. The 2 seconds per turn limit turned out to be an obstacle to
             my approach due to the sheer amount of data I was processing each
             turn. So my secret sauce was using{" "}
-            <S.Link href="https://numpy.org/">numpy</S.Link> to process 2D data
-            faster.
+            <a href="https://numpy.org/">numpy</a> to process 2D data faster.
           </p>
           <p>I'll upload my code here once I find it.</p>
         </S.Container>
@@ -42,4 +39,4 @@ export const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HalitePage;

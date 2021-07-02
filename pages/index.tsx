@@ -54,7 +54,7 @@ const projects = [
     size: 2,
   },
   {
-    name: "Voxel World",
+    name: "Procedural Voxel World",
     publishedAt: new Date("December 2020"),
     imageSrc: "https://storage.googleapis.com/john-portfolio/voxels.mp4",
     imageSize: { width: 984, height: 553 },

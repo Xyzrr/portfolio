@@ -1,7 +1,7 @@
 import * as S from "../styles/project.styles";
 import Head from "next/head";
 
-export const Home: React.FC = () => {
+export const SnakePage: React.FC = () => {
   return (
     <>
       <Head>
@@ -18,9 +18,7 @@ export const Home: React.FC = () => {
           <S.Title>Reinforcement Learning Snake</S.Title>
           <p>
             I grew interested in reinforcement learning after reading DeepMind's{" "}
-            <S.Link href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">
-              paper
-            </S.Link>{" "}
+            <a href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">paper</a>{" "}
             on how they made a single agent that could learn to competently play
             6 different Atari games using raw video input. Their approach was
             simple but brilliant: they took the standard Q-learning algorithm
@@ -31,22 +29,19 @@ export const Home: React.FC = () => {
           <p>
             To cement my understanding of the algorithm, I applied it to the
             classic Snake game. Here's my{" "}
-            <S.Link href="https://github.com/Xyzrr/rl-snake">code</S.Link>. I
-            used Keras for the neural net and trained it in a{" "}
-            <S.Link href="https://github.com/Xyzrr/rl-snake/blob/master/gym_snake/envs/snake_env.py">
+            <a href="https://github.com/Xyzrr/rl-snake">code</a>. I used Keras
+            for the neural net and trained it in a{" "}
+            <a href="https://github.com/Xyzrr/rl-snake/blob/master/gym_snake/envs/snake_env.py">
               custom OpenAI Gym environment
-            </S.Link>
+            </a>
             . And of course, I used{" "}
-            <S.Link href="https://wandb.ai/johnq/snake">
-              Weights & Biases
-            </S.Link>{" "}
-            to track my experiments.
+            <a href="https://wandb.ai/johnq/snake">Weights & Biases</a> to track
+            my experiments.
           </p>
           <p>
             I wasn't able to perfectly solve Snake like I had hoped, but it's
             still pretty cool to watch. I'm now running the trained model in the
-            background of my{" "}
-            <S.Link href="https://johnqian.com">home page</S.Link>. It's
+            background of my <a href="https://johnqian.com">home page</a>. It's
             actually interactive; you can temporarily override the AI's choices
             using the arrow keys.
           </p>
@@ -56,4 +51,4 @@ export const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default SnakePage;

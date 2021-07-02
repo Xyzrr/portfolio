@@ -2,7 +2,25 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   margin: 0 auto;
-  max-width: 700px;
+  padding: 0 32px 40vh;
+  max-width: 760px;
+
+  a {
+    color: #007faf;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  li {
+    margin-bottom: 12px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -22,12 +40,5 @@ export const VideoWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-  }
-`;
-
-export const Link = styled.a`
-  color: #007faf;
-  &:hover {
-    text-decoration: underline;
   }
 `;

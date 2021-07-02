@@ -1,7 +1,7 @@
 import * as S from "../styles/project.styles";
 import Head from "next/head";
 
-export const Home: React.FC = () => {
+export const HighSchoolPage: React.FC = () => {
   return (
     <>
       <Head>
@@ -42,4 +42,4 @@ export const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HighSchoolPage;
