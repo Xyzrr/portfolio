@@ -12,24 +12,21 @@ export const Intro = styled.div`
 export const IntroContent = styled.div`
   margin: 0 auto;
   padding: 64px 32px 0;
-  max-width: 760px;
 `;
 
 export const Title = styled.h1`
   font-weight: 300;
   font-size: 28px;
-  max-width: 700px;
-  margin: 0 auto 12px;
+  margin: 0 auto 16px;
 `;
 
 export const Description = styled.div`
   color: #555;
-  max-width: 700px;
   margin: 0 auto;
 `;
 
 export const Divider = styled.div`
-  margin-top: 32px;
+  margin-top: 28px;
   border-bottom: 1px solid #e6e6e6;
 `;
 
@@ -44,7 +41,7 @@ export const ProjectsRow = styled.div`
 `;
 
 export const ProjectImage = styled.div`
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: hidden;
   height: fit-content;
   & > div,
@@ -57,21 +54,22 @@ export const ProjectImage = styled.div`
 `;
 
 export const ProjectText = styled.div`
-  margin-top: 8px;
+  margin-top: 12px;
   display: flex;
   justify-content: space-between;
+  gap: 8px;
 `;
 
 export const ProjectTitle = styled.h2`
   font-weight: 400;
   color: #444;
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
 `;
 
 export const ProjectDate = styled.span`
-  color: #999;
-  font-size: 15px;
+  color: #aaa;
+  font-size: 16px;
   flex-shrink: 0;
 `;
 
