@@ -25,7 +25,8 @@ const projects = [
   {
     name: "Vega Platformer",
     publishedAt: new Date("November 2020"),
-    imageSrc: "https://storage.googleapis.com/john-portfolio/platformer.mp4",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/platformer/thumbnail.mp4",
     imageSize: { width: 460, height: 277 },
     href: "platformer",
     size: 1,
