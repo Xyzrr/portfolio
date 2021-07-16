@@ -12,7 +12,7 @@ const Gallery: React.FC<GalleryProps> = ({ sources, bordered, wide }) => {
       {sources.map((source) => {
         if (source.includes("youtu.be")) {
           return (
-            <div>
+            <S.VideoEmbedContainer>
               <iframe
                 width="100%"
                 height="315"
@@ -22,7 +22,7 @@ const Gallery: React.FC<GalleryProps> = ({ sources, bordered, wide }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            </div>
+            </S.VideoEmbedContainer>
           );
         }
 

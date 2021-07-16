@@ -1,5 +1,19 @@
 import styled, { css } from "styled-components";
 
+export const VideoEmbedContainer = styled.div`
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 export const Wrapper = styled.div<{ bordered?: boolean; wide?: boolean }>`
   display: flex;
   margin: 0 auto 16px;

@@ -85,14 +85,6 @@ export const VideoWrapper = styled.div`
   margin: 0 auto;
   width: min(100vw - 128px, 716px);
   margin-bottom: 16px;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export const Gallery = styled.div``;
