@@ -1,0 +1,32 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+
+<ProjectLayout title="Proceedural Voxel World">
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/voxels/thumbnail.mp4",
+  ]}
+/>
+
+I always wanted to make a Minecraft-like voxel engine for the web. There's something satisfying about it; you get an infinitely vast, organic-feeling world from a small amount of modular code.
+
+## Key Learnings
+
+### Perlin noise is a godsend for procedural generation.
+
+Perlin noise works like a fragment shader; it's a pure function that, given a coordinate, returns a value in constant time. This allows you to deterministically generate a piece of terrain in any location without knowing anything about its surroundings.
+
+### Biomes aren't discrete.
+
+[details tbd]
+
+### Chunks are a necessity.
+
+I tried quite hard to avoid dividing the world into 16x16x256 chunks the way Minecraft does, because I felt like there had to be a more elegant option. But as I learned more about how GPU's work, I realized chunking was the only practical way to render an infinite world. If each block were its own mesh, there would be too many calls to drawElements. It turns out that drawing many triangles via a single drawElements call is much faster than drawing the same number of triangles via multiple drawElements calls. If the entire world were a single mesh, it would need to constantly morph as blocks are added and removed, which turns out to be impractical due to the way vertex buffers work. So we need to compromise by having each chunk be a mesh. There's few enough chunks for the number of drawElements calls to be acceptable, and each mesh is small enough to be rapidly reconstructed from scratch after a modifcation.
+
+### Structures that cross chunk boundaries are problematic.
+
+[details tbd]
+
+</ProjectLayout>
