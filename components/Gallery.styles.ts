@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ bordered?: boolean; wide?: boolean }>`
   display: flex;
   margin: 0 auto 16px;
   overflow: hidden;
-  gap: 8px;
+  gap: 16px;
   align-items: center;
   flex-flow: row nowrap;
 
