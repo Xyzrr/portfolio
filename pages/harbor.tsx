@@ -27,83 +27,115 @@ export const HarborPage: React.FC = () => {
             src="https://storage.googleapis.com/john-portfolio/harbor/preview.png"
           />
           <p>
-            You can only see and hear people close to you. When someone is close
-            to you, their video slides into the top-right of your screen like a
-            notification. It's designed to be as small and low-effort as
-            possible, naturally getting out of the way whenever nothing's going
-            on.
+            For a full list of features, see the{" "}
+            <a href="https://harbor.chat">marketing site</a>.
+          </p>
+          <h2>Hardest decisions</h2>
+          <h3>Moving the map to the menu bar</h3>
+          <p>
+            In my initial prototype, the map view and the user tiles (the
+            rectangles on the right containing camera feeds) were always in the
+            same window.
+          </p>
+          <S.VideoWrapper>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/AEOU3Z9p8oM"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </S.VideoWrapper>
+          <p>
+            This was simple and easy to understand. The problem was that most of
+            the time, user tiles were much more important to see than the map.
+            You don't need to see where everyone is located all the time.
+            They're a background status, like available wifi connections. So I
+            decided put the map view in the same location as the wifi status: in
+            the menu bar.
+          </p>
+          <h3>Animated avatars → Profile pictures</h3>
+          <S.ImageGallery>
+            <div>
+              <img src="https://storage.googleapis.com/john-portfolio/harbor/avatars.png"></img>
+            </div>
+            <div>
+              <img src="https://storage.googleapis.com/john-portfolio/harbor/propics.png"></img>
+            </div>
+          </S.ImageGallery>
+          <p>
+            I had originally planned on using animated avatars to represent
+            people, as seen on the left, because it opens up possibilities for
+            body language. But when I decided to tuck the space inside the Tray,
+            I realized that an avatar based design is too cluttered for the tiny
+            window. Profile pictures, though more stilted and less flexible,
+            convey identity much more efficiently.
+          </p>
+          <h3>Remote vs. Local</h3>
+          <p>
+            Electron's security practices are confusing because they're
+            constantly evolving. Slack wrote a{" "}
+            <a href="https://slack.engineering/interops-labyrinth-sharing-code-between-web-electron-apps/">
+              very helpful article
+            </a>{" "}
+            explaining why your Electron app shouldn't just be a browser into
+            your web app (Path 1: The Shortcut and Path 2: Remote Isolation).
+            However, many startups are doing exactly that because it's much
+            easier and faster than the alternatives. Moreover, many Electron
+            features like{" "}
+            <a href="https://www.electronjs.org/docs/tutorial/context-isolation">
+              context isolation
+            </a>{" "}
+            are being added that make Path 2 easier to pull off. I opted to go
+            the recommended way (Path 3: Local Resources) but it's still unclear
+            whether it was worth the cost in development velocity.
+          </p>
+          <h2>Key Learnings</h2>
+          <h3>
+            When using Electron, you can almost always use the native
+            capabilities you need, but they may be finicky and undocumented.
+          </h3>
+          <p>
+            For Harbor, we used multi-window management, screen recording,
+            notifications, the Tray API, the powerMonitor API, process forking,
+            AppleScript, and more. Virtually every feature required diving deep
+            into Github issues and other forums to unravel obscure behaviors. I
+            would have greatly benefitted from having a friend with deep
+            Electron experience, so if you need me to be that friend now, let me
+            know.
+          </p>
+          <h3>
+            Desktop app design has an important difference from web app design:
+            you have complete control over the screen space.
+          </h3>
+          <p>
+            Desktop apps can open multiple windows, control their sizes and
+            positions, and even make them non-rectangular. Web apps, on the
+            other hand, need to fill the browser, which is sized and positioned
+            solely by the user.
           </p>
           <p>
-            I spent over 3 months on Harbor, and received help from friends
-            Carey Phelps, Axel Setyanto, and Brandon Wang. We built lots of
-            features, notably interactive screen sharing, whispering, busy mode,
-            and work app sharing. I applied to Y Combinator, got an interview
-            and sort of almost got in:
+            We made extensive use of this control in Harbor. The most obvious
+            example is the way a user's video slides in from the right side of
+            your screen when they get close to you.
           </p>
-          <S.Image
-            style={{ width: 600 }}
-            src="https://storage.googleapis.com/john-portfolio/harbor/email.png"
-          />
+          <p>[gif]</p>
           <p>
-            They clearly saw potential, so all we needed to do was get a few
-            users and we'd be in. Sounds promising, right? Unfortunately, that
-            was the peak of the story.
+            But window control affected our design of every part of the UI.
+            Every page is only as large as it needs to be. For instance, the
+            home page has more content than the auth page, so the window grows
+            wider after you sign in.
           </p>
-          <p>
-            The longer I worked on Harbor, the more pessimistic I became about
-            the project. Every day, new negative thoughts would appear in my
-            mind and I would push them aside. Here's some of the thoughts I
-            postponed:
-          </p>
-          <ul>
-            <li>
-              Post-pandemic, I want to actually be physically with my coworkers.
-              Harbor can never truly replicate that. But as long as I'm working
-              on Harbor, I'll be leading a remote team, because we have to be
-              our own users. It'll be lonely.
-            </li>
-            <li>
-              People like me who really like being around coworkers will return
-              to their offices post-pandemic. Meaning that I'm not a
-              representative user, so I lack user empathy.
-            </li>
-            <li>
-              Most people who choose to work remotely don't want to spend more
-              than a couple hours a week with their coworkers. Staying connected
-              all day would be a chore that only their managers would want.
-            </li>
-            <li>
-              Everyone and their dog is building a virtual office app. Even
-              though nothing is quite like Harbor, I don't feel like a pioneer.
-            </li>
-            <li>
-              Desktop apps are no fun to build. Inconsistencies between OS
-              versions are abundant, and users don't instantly receive updates
-              the way they do with web apps.
-            </li>
-            <li>
-              Video chat apps are no fun to build. Audio is particularly painful
-              to debug because you can't play music while testing it.
-            </li>
-            <li>
-              Virtual office apps are no fun to build. It's often impractical to
-              use the app while developing it. As a result, you don't really get
-              to use your own app.
-            </li>
-          </ul>
-          <p>
-            As the YC re-interview date approached, I had honestly ask myself
-            whether I'd be happy spending my next ~4 years building Harbor. I
-            decided I wouldn't be. So I cancelled the re-interview and told my
-            friends who helped me that I was giving up. I had never so directly
-            let people down before. They were all extremely gracious about it; I
-            was lucky.
-          </p>
-          <p>
-            I don't regret taking a swing at Harbor. I lost a lot of money and
-            the confidence of some spectators, but I learned a lot about what
-            matters to me. That'll be useful for my next attempt.
-          </p>
+          <S.ImageGallery>
+            <div>
+              <img src="https://storage.googleapis.com/john-portfolio/harbor/auth.png"></img>
+            </div>
+            <div>
+              <img src="https://storage.googleapis.com/john-portfolio/harbor/home.png"></img>
+            </div>
+          </S.ImageGallery>
         </S.Container>
       </main>
     </>

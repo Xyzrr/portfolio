@@ -34,7 +34,7 @@ export const Container = styled.div`
   }
 
   h3 {
-    font-size: 28px;
+    font-size: 20px;
     margin-bottom: 4px;
   }
 
@@ -89,6 +89,9 @@ export const VideoWrapper = styled.div`
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
+  margin: 0 auto;
+  width: min(100vw - 128px, 716px);
+  margin-bottom: 16px;
 
   iframe {
     position: absolute;
@@ -156,4 +159,17 @@ export const Video = styled.video<{ wide?: boolean; bordered?: boolean }>`
       border: 1px solid #ddd;
       border-radius: 4px;
     `}
+`;
+
+export const ImageGallery = styled.div`
+  display: flex;
+  width: min(100vw - 128px, 716px);
+  margin: 0 auto;
+  overflow: hidden;
+  gap: 8px;
+  align-items: center;
+  flex-flow: row nowrap;
+  img {
+    max-width: 100%;
+  }
 `;
