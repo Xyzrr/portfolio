@@ -8,10 +8,6 @@ export const HalitePage: React.FC = () => {
         <title>Halite III Bot</title>
         <meta name="description" content="Product and Eng" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <main>
         <S.Container>

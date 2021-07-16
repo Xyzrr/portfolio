@@ -38,10 +38,10 @@ export const ProjectsRow = styled.div`
   gap: 32px;
   flex-wrap: wrap;
   margin-bottom: 48px;
+  align-items: flex-end;
 `;
 
 export const ProjectImage = styled.div`
-  border-radius: 2px;
   overflow: hidden;
   height: fit-content;
   & > div,
@@ -57,7 +57,8 @@ export const ProjectText = styled.div`
   margin-top: 12px;
   display: flex;
   justify-content: space-between;
-  gap: 8px;
+  gap: 2px;
+  flex-direction: column;
 `;
 
 export const ProjectTitle = styled.h2`

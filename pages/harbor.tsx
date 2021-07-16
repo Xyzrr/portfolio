@@ -8,10 +8,6 @@ export const HarborPage: React.FC = () => {
         <title>Harbor</title>
         <meta name="description" content="Product and Eng" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <main>
         <S.Container>
@@ -26,7 +22,10 @@ export const HarborPage: React.FC = () => {
             allows you to exist in a virtual 2D space where you can roam around
             with up to 200 coworkers at once.
           </p>
-          <img src="https://storage.googleapis.com/john-portfolio/harbor/preview.png" />
+          <S.Image
+            wide
+            src="https://storage.googleapis.com/john-portfolio/harbor/preview.png"
+          />
           <p>
             You can only see and hear people close to you. When someone is close
             to you, their video slides into the top-right of your screen like a
@@ -41,7 +40,7 @@ export const HarborPage: React.FC = () => {
             and work app sharing. I applied to Y Combinator, got an interview
             and sort of almost got in:
           </p>
-          <img
+          <S.Image
             style={{ width: 600 }}
             src="https://storage.googleapis.com/john-portfolio/harbor/email.png"
           />

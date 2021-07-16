@@ -9,7 +9,7 @@ const projects = [
     name: "Spatial Video Chat",
     publishedAt: new Date("May 2021"),
     imageSrc: "/harbor.png",
-    imageSize: { width: 984, height: 674 },
+    imageSize: { width: 984, height: 652 },
     href: "harbor",
     size: 2,
   },
@@ -124,10 +124,6 @@ export const Home: React.FC = () => {
         <title>John Qian</title>
         <meta name="description" content="Product and Eng" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
       <main>
