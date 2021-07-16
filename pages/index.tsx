@@ -50,7 +50,8 @@ const projects = [
   {
     name: "Interactive Comments",
     publishedAt: new Date("June 2020"),
-    imageSrc: "/comments.png",
+    imageSrc:
+      "/https://storage.googleapis.com/john-portfolio/comments/thumbnail.png",
     imageSize: { width: 984, height: 482 },
     href: "comments",
     size: 2,
@@ -58,7 +59,8 @@ const projects = [
   {
     name: "Procedural Voxel World",
     publishedAt: new Date("December 2020"),
-    imageSrc: "https://storage.googleapis.com/john-portfolio/voxels.mp4",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/voxels/thumbnail.mp4",
     imageSize: { width: 984, height: 553 },
     href: "voxels",
     size: 2,
