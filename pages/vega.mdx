@@ -1,0 +1,27 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+
+<ProjectLayout title="Vega Visualization Editor">
+
+# Vega Visualization Editor
+
+At Weights & Biases, I was responsible for the design and development of the custom chart editor (or more dramatically, the [Machine Learning Visualization IDE](https://wandb.ai/wandb/posts/reports/The-W-B-Machine-Learning-Visualization-IDE--VmlldzoyNjk3Nzg)). Previously, W&B users had to use prebuilt charts (line plots, scatter plots, tables, etc.) with limited configuration options to visualize their data. The custom chart editor utilized the [Vega](https://vega.github.io/vega/) visualization grammar to enable users to visualize their data however they wanted. As of July 2021, custom charts are used in thousands of W&B projects.
+
+Here's some examples of charts made using the custom chart editor:
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/harbor/auth.png",
+    "https://storage.googleapis.com/john-portfolio/harbor/home.png",
+  ]}
+/>
+
+## Considerations
+
+The custom chart editor is designed for power users, making functionality more important than aesthetic. The editor's UI is considerably more dense than most of the rest of the W&B product.
+
+## Process
+
+To develop user empathy, I became my own user. While iterating on the custom chart editor, I used it to build my own custom chart. To keep it entertaining for myself, I made an odd chart: a [2D platformer](http://localhost:3000/platformer).
+
+</ProjectLayout>

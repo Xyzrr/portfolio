@@ -1,0 +1,65 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+
+<ProjectLayout title="Harbor">
+
+# Harbor
+
+I love having my coworkers around when I work. So when pandemic hit, I spent a lot of time on video chat. But traditional video chat gets uncomfortable with more than 5 people in a room because there's no natural way break into smaller conversations like there is in real life. Harbor was my attempt to solve that. It's a desktop app that lives in your menu bar and allows you to exist in a virtual 2D space where you can roam around with up to 200 coworkers at once, but only see and hear the few people nearby.
+
+<Gallery
+  wide
+  sources={["https://storage.googleapis.com/john-portfolio/harbor/preview.png"]}
+/>
+
+For a full list of features, see the [marketing page](https://www.harbor.chat/).
+
+## Hardest decisions
+
+### Moving the map to the menu bar
+
+In my initial prototype, the map view and the user tiles (the rectangles on the right containing camera feeds) were always in the same window.
+
+<Gallery sources={["https://youtu.be/AEOU3Z9p8oM"]} />
+
+This was simple and easy to understand. The problem was that most of the time, user tiles were much more important to see than the map. You don't need to see where everyone is located all the time. They're a background status, like available wifi connections. So I decided put the map view in the same location as the wifi status: in the menu bar.
+
+### Animated avatars → Profile pictures
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/harbor/avatars.png",
+    "https://storage.googleapis.com/john-portfolio/harbor/propics.png",
+  ]}
+/>
+
+I had originally planned on using animated avatars to represent people, as seen on the left, because it opens up possibilities for body language. But when I decided to tuck the space inside the Tray, I realized that an avatar based design is too cluttered for the tiny window. Profile pictures, though more stilted and less flexible, convey identity much more efficiently.
+
+### Remote vs. Local
+
+Electron's security practices are confusing because they're constantly evolving. Slack wrote a [very helpful article](https://slack.engineering/interops-labyrinth-sharing-code-between-web-electron-apps/) explaining why your Electron app shouldn't just be a browser into your web app (Path 1: The Shortcut and Path 2: Remote Isolation). However, many startups are doing exactly that because it's much easier and faster than the alternatives. Moreover, many Electron features like [context isolation](https://www.electronjs.org/docs/tutorial/context-isolation) are being added that make Path 2 easier to pull off. I opted to go the recommended way (Path 3: Local Resources) but it's still unclear whether it was worth the cost in development velocity.
+
+## Key Learnings
+
+### When using Electron, you can almost always use the native capabilities you need, but they may be finicky and undocumented.
+
+For Harbor, we used multi-window management, screen recording, notifications, the Tray API, the powerMonitor API, process forking, AppleScript, and more. Virtually every feature required diving deep into Github issues and other forums to unravel obscure behaviors. I would have greatly benefitted from having a friend with deep Electron experience, so if you need me to be that friend now, let me know.
+
+### Desktop app design has an important difference from web app design: you have complete control over the screen space.
+
+Desktop apps can open multiple windows, control their sizes and positions, and even make them non-rectangular. Web apps, on the other hand, need to fill the browser, which is sized and positioned solely by the user.
+
+We made extensive use of this control in Harbor. The most obvious example is the way a user's video slides in from the right side of your screen when they get close to you.
+
+[gif]
+
+But window control affected our design of every part of the UI. Every page is only as large as it needs to be. For instance, the home page has more content than the auth page, so the window grows wider after you sign in.
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/harbor/auth.png",
+    "https://storage.googleapis.com/john-portfolio/harbor/home.png",
+  ]}
+/>
+
+</ProjectLayout>

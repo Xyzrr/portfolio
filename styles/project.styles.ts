@@ -1,7 +1,9 @@
-import styled, { css } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
 
-export const Container = styled.div`
-  padding-bottom: 40vh;
+const ProjectStyles = createGlobalStyle`
+  body {
+    padding-bottom: 40vh;
+  }
 
   h1,
   h2,
@@ -49,20 +51,8 @@ export const Container = styled.div`
     }
   }
 
-  img {
-    display: block;
-    margin-bottom: 16px;
-  }
-
   li {
     margin-bottom: 12px;
-  }
-
-  video {
-    display: block;
-    border: 1px solid #ddd;
-    margin-bottom: 16px;
-    border-radius: 4px;
   }
 
   @media (max-width: 768px) {
@@ -70,13 +60,16 @@ export const Container = styled.div`
     h2,
     h3,
     p,
-    ul,
-    video {
-      margin-left: auto;
-      margin-right: auto;
+    ul {
       width: min(100vw - 64px, 716px);
     }
   }
+`;
+
+export default ProjectStyles;
+
+export const Container = styled.div`
+  padding-bottom: 40vh;
 `;
 
 export const Title = styled.h1`
@@ -102,24 +95,7 @@ export const VideoWrapper = styled.div`
   }
 `;
 
-export const Gallery = styled.div`
-  width: 100%;
-  background: pink;
-  display: flex;
-  overflow: hidden;
-  padding: 64px 32px 0;
-  margin-bottom: 32px;
-  margin-top: 32px;
-  video {
-    width: min(100vw - 128px, 716px);
-    border: none;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    margin: 0 auto -128px;
-    border-radius: 4px;
-    overflow: hidden;
-    padding: 0;
-  }
-`;
+export const Gallery = styled.div``;
 
 export const Image = styled.img<{ wide?: boolean; bordered?: boolean }>`
   margin-left: auto;
