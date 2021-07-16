@@ -66,7 +66,8 @@ const projects = [
   {
     name: "Q-Learning Simulator",
     publishedAt: new Date("December 2019"),
-    imageSrc: "https://storage.googleapis.com/john-portfolio/qlearning.mp4",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/qlearning/thumbnail.mp4",
     imageSize: { width: 460, height: 338 },
     href: "qlearning",
     size: 1,
@@ -82,7 +83,8 @@ const projects = [
   {
     name: "Halite III Bot",
     publishedAt: new Date("January 2019"),
-    imageSrc: "https://storage.googleapis.com/john-portfolio/halite.mp4",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/halite/thumbnail.mp4",
     imageSize: { width: 460, height: 460 },
     href: "halite",
     size: 1,

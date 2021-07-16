@@ -14,6 +14,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ title, children }) => {
         <meta name="description" content="Made by John Qian." />
       </Head>
       <ProjectStyles />
+      <h1>{title}</h1>
       {children}
     </>
   );

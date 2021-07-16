@@ -1,0 +1,18 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+
+<ProjectLayout title="Halite III Bot">
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/halite/thumbnail.mp4",
+  ]}
+/>
+
+Two Sigma annually runs a very fun AI programming competition called [Halite](https://halite.io/). I competed in the third edition and ranked [#29](https://2018.halite.io/user/?user_id=8432) of ~4000 players, putting me at #3 among US university students.
+
+I didn't use any machine learning for my bot. Instead I used a sloppy heuristic to estimate the value of being in a cell, and made each ship greedily move to the highest value adjacent cell each turn. The 2 seconds per turn limit turned out to be an obstacle to my approach due to the sheer amount of data I was processing each turn. So my secret sauce was using [numpy](https://numpy.org/) to process 2D data faster.
+
+I'll upload my code here once I find it.
+
+</ProjectLayout>
