@@ -7,7 +7,7 @@ import moment from "moment";
 const projects = [
   {
     name: "Spatial Video Chat",
-    publishedAt: new Date("May 2021"),
+    publishedAt: "2021-05",
     imageSrc: "/harbor.png",
     imageSize: { width: 984, height: 652 },
     href: "harbor",
@@ -15,7 +15,7 @@ const projects = [
   },
   {
     name: "WYSIWYG Document Editor",
-    publishedAt: new Date("March 2021"),
+    publishedAt: "2021-03",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/wysiwyg/thumbnail.mp4",
     imageSize: { width: 984, height: 610 },
@@ -24,7 +24,7 @@ const projects = [
   },
   {
     name: "Vega Platformer",
-    publishedAt: new Date("November 2020"),
+    publishedAt: "2020-11",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/platformer/thumbnail.mp4",
     imageSize: { width: 460, height: 277 },
@@ -33,7 +33,7 @@ const projects = [
   },
   {
     name: "Vega Visualization Editor",
-    publishedAt: new Date("November 2020"),
+    publishedAt: "2020-11",
     imageSrc: "/vega.png",
     imageSize: { width: 984, height: 646 },
     href: "vega",
@@ -41,7 +41,7 @@ const projects = [
   },
   {
     name: "Multiplayer Tetris",
-    publishedAt: new Date("February 2020"),
+    publishedAt: "2020-02",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/tetris/thumbnail.png",
     imageSize: { width: 460, height: 262 },
@@ -50,7 +50,7 @@ const projects = [
   },
   {
     name: "Interactive Comments",
-    publishedAt: new Date("June 2020"),
+    publishedAt: "2020-06",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/comments/thumbnail.png",
     imageSize: { width: 984, height: 482 },
@@ -59,7 +59,7 @@ const projects = [
   },
   {
     name: "Procedural Voxel World",
-    publishedAt: new Date("December 2020"),
+    publishedAt: "2020-12",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/voxels/thumbnail.mp4",
     imageSize: { width: 984, height: 553 },
@@ -68,7 +68,7 @@ const projects = [
   },
   {
     name: "Q-Learning Simulator",
-    publishedAt: new Date("December 2019"),
+    publishedAt: "2019-12",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/qlearning/thumbnail.mp4",
     imageSize: { width: 460, height: 338 },
@@ -77,7 +77,7 @@ const projects = [
   },
   {
     name: "AI Snake",
-    publishedAt: new Date("February 2019"),
+    publishedAt: "2019-02",
     imageSrc: "/snake.png",
     imageSize: { width: 460, height: 431 },
     href: "snake",
@@ -85,7 +85,7 @@ const projects = [
   },
   {
     name: "Halite III Bot",
-    publishedAt: new Date("January 2019"),
+    publishedAt: "2019-01",
     imageSrc:
       "https://storage.googleapis.com/john-portfolio/halite/thumbnail.mp4",
     imageSize: { width: 460, height: 460 },
@@ -94,7 +94,7 @@ const projects = [
   },
   {
     name: "Pre-University",
-    publishedAt: new Date("September 2017"),
+    publishedAt: "2017-09",
     imageSrc: "/highschool.png",
     imageSize: { width: 460, height: 256 },
     href: "highschool",
