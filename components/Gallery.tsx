@@ -29,7 +29,7 @@ const Gallery: React.FC<GalleryProps> = ({ sources, bordered, wide }) => {
         if (source.endsWith(".mov") || source.endsWith(".mp4")) {
           return (
             <div>
-              <video src={source} autoPlay muted loop></video>
+              <video src={source} autoPlay muted loop playsInline></video>
             </div>
           );
         }
