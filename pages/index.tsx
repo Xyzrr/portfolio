@@ -51,7 +51,7 @@ const projects = [
     name: "Interactive Comments",
     publishedAt: new Date("June 2020"),
     imageSrc:
-      "/https://storage.googleapis.com/john-portfolio/comments/thumbnail.png",
+      "https://storage.googleapis.com/john-portfolio/comments/thumbnail.png",
     imageSize: { width: 984, height: 482 },
     href: "comments",
     size: 2,
