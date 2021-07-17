@@ -28,6 +28,7 @@ const ProjectStyles = createGlobalStyle`
   h1 {
     font-size: 48px;
     margin-bottom: 16px;
+    margin-top: 64px;
   }
 
   h2 {
@@ -67,77 +68,3 @@ const ProjectStyles = createGlobalStyle`
 `;
 
 export default ProjectStyles;
-
-export const Container = styled.div`
-  padding-bottom: 40vh;
-`;
-
-export const Title = styled.h1`
-  font-weight: 300;
-  font-size: 28px;
-  margin-top: 64px;
-`;
-
-export const VideoWrapper = styled.div`
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  margin: 0 auto;
-  width: min(100vw - 128px, 716px);
-  margin-bottom: 16px;
-`;
-
-export const Gallery = styled.div``;
-
-export const Image = styled.img<{ wide?: boolean; bordered?: boolean }>`
-  margin-left: auto;
-  margin-right: auto;
-  width: min(100vw - 128px, 716px);
-  ${(props) =>
-    props.wide &&
-    css`
-      width: min(100vw - 64px, 972px);
-      @media (max-width: 768px) {
-        width: min(100vw - 32px, 972px);
-      }
-    `}
-  ${(props) =>
-    props.bordered &&
-    css`
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    `}
-`;
-
-export const Video = styled.video<{ wide?: boolean; bordered?: boolean }>`
-  margin-left: auto;
-  margin-right: auto;
-  width: min(100vw - 128px, 716px);
-  ${(props) =>
-    props.wide &&
-    css`
-      width: min(100vw - 64px, 972px);
-      @media (max-width: 768px) {
-        width: min(100vw - 32px, 972px);
-      }
-    `}
-  ${(props) =>
-    props.bordered &&
-    css`
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    `}
-`;
-
-export const ImageGallery = styled.div`
-  display: flex;
-  width: min(100vw - 128px, 716px);
-  margin: 0 auto;
-  overflow: hidden;
-  gap: 8px;
-  align-items: center;
-  flex-flow: row nowrap;
-  img {
-    max-width: 100%;
-  }
-`;
