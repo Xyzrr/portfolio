@@ -42,7 +42,8 @@ const projects = [
   {
     name: "Multiplayer Tetris",
     publishedAt: new Date("February 2020"),
-    imageSrc: "/tetris.png",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/tetris/thumbnail.png",
     imageSize: { width: 460, height: 262 },
     href: "tetris",
     size: 1,

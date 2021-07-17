@@ -1,0 +1,28 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+
+<ProjectLayout title="Multiplayer Tetris">
+
+<Gallery
+  sources={[
+    "https://storage.googleapis.com/john-portfolio/tetris/thumbnail.png",
+  ]}
+/>
+
+I was addicted to Tetris 99 for awhile and was frustrated that there was no web equivalent, so I set off to make one with the help of Tom Holmes. This project turned out to be an exploration in two main things: realtime multiplayer game server logic, and WebAssembly using Go.
+
+If you're wondering why we chose to use Go on the frontend, we don't have a great reason. Tom liked writing servers in Go, I wanted to share game logic between the client and server, and this project wasn't very serious, so why not try something new and risky?
+
+## Key Learnings
+
+### As of 2019, Go isn't great for WebAssembly.
+
+Go uses a garbage collector, and WebAssembly doesn't have garbage collection built in. So any Go application compiled to WebAssembly needs to include a garbage collector, making it take a minimum of 3MB, which is quite large for a website's script.
+
+The way that Go interfaces Javascript is also strange. When using Rust for WebAssembly, the Rust code essentially serves as a library of functions that can be called from Javascript. I expected Go to be similar. Instead, with Go you essentially write a separate that runs in parallel with your Javascript, using channels to communicate. This isn't a big problem because you can architect it to behave essentially like a library, but it is somewhat more awkward.
+
+### React is slow.
+
+I initially had each player's tetris board be its own React component, with tetromino data stored in the component's state. This turned out to be unusably slow. I found that no matter how simple a component was, re-rendering it by updating its state cost at least 2ms. This meant that with 100 tetris boards, the frame rate was limited to 5fps. So I decided to render the entire game on one canvas and do away with React state updates altogether, which made the game run smooth as silk.
+
+</ProjectLayout>
