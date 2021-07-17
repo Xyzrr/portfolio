@@ -162,7 +162,13 @@ export const Home: React.FC = () => {
                       >
                         <S.ProjectImage>
                           {project.imageSrc.substr(-3) === "mp4" ? (
-                            <video src={project.imageSrc} autoPlay muted loop />
+                            <video
+                              src={project.imageSrc}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
                           ) : (
                             <Image
                               src={project.imageSrc}
