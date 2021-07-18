@@ -1,7 +1,17 @@
 import ProjectLayout from "../layouts/ProjectLayout";
 import Gallery from "../components/Gallery";
+import Button, { ButtonGroup } from "../components/Button";
 
-<ProjectLayout title="Proceedural Voxel World">
+<ProjectLayout title="Procedural Voxel World">
+
+<ButtonGroup>
+  <Button icon="sports_esports" href="https://voxels.johnqian.com/">
+    Demo
+  </Button>
+  <Button icon="code" href="https://github.com/Xyzrr/voxels">
+    Code
+  </Button>
+</ButtonGroup>
 
 <Gallery
   sources={[
@@ -9,7 +19,7 @@ import Gallery from "../components/Gallery";
   ]}
 />
 
-I always wanted to make a Minecraft-like voxel engine for the web. There's something satisfying about it; you get an infinitely vast, organic-feeling world from a small amount of modular code.
+I always wanted to make a Minecraft-like voxel engine for the web. There's something satisfying about it; you get an infinitely vast, organic-feeling world from a small amount of modular code. So for fun, I made a barebones voxel engine with the help of [Axel Setyanto](https://github.com/laxels).
 
 ## Key Learnings
 

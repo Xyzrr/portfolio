@@ -13,6 +13,7 @@ const ReportHero: React.FC<ReportHeroProps> = ({ className }) => {
         autoPlay
         muted
         loop
+        playsInline
       />
     </S.Wrapper>
   );

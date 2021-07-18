@@ -17,4 +17,10 @@ export const Wrapper = styled.div`
     overflow: hidden;
     padding: 0;
   }
+  @media (max-width: 768px) {
+    video {
+      width: min(100vw - 64px, 716px);
+      margin-bottom: -32px;
+    }
+  }
 `;

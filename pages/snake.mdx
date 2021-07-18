@@ -1,7 +1,14 @@
 import ProjectLayout from "../layouts/ProjectLayout";
 import Gallery from "../components/Gallery";
+import Button, { ButtonGroup } from "../components/Button";
 
 <ProjectLayout title="AI Snake">
+
+<ButtonGroup>
+  <Button icon="code" href="https://github.com/Xyzrr/rl-snake">
+    Code
+  </Button>
+</ButtonGroup>
 
 I grew interested in reinforcement learning after reading DeepMind's [paper](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) on how they made a single agent that could learn to competently play 6 different Atari games using raw video input. Their approach was simple but brilliant: they took the standard Q-learning algorithm and swapped its lookup table with a convolutional neural network. This allowed Q-learning to be applied to an infinite and continous state space.
 

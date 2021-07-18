@@ -1,7 +1,17 @@
 import ProjectLayout from "../layouts/ProjectLayout";
 import Gallery from "../components/Gallery";
+import Button, { ButtonGroup } from "../components/Button";
 
 <ProjectLayout title="Vega Visualization Editor">
+
+<ButtonGroup>
+  <Button
+    icon="sports_esports"
+    href="https://wandb.ai/wandb/posts/reports/The-W-B-Machine-Learning-Visualization-IDE--VmlldzoyNjk3Nzg"
+  >
+    Try it
+  </Button>
+</ButtonGroup>
 
 At Weights & Biases, I was responsible for the design and development of the custom chart editor (or more dramatically, the [Machine Learning Visualization IDE](https://wandb.ai/wandb/posts/reports/The-W-B-Machine-Learning-Visualization-IDE--VmlldzoyNjk3Nzg)). Previously, W&B users had to use prebuilt charts (line plots, scatter plots, tables, etc.) with limited configuration options to visualize their data. The custom chart editor utilized the [Vega](https://vega.github.io/vega/) visualization grammar to enable users to visualize their data however they wanted. As of July 2021, custom charts are used in thousands of W&B projects.
 
