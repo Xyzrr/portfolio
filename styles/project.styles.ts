@@ -46,9 +46,10 @@ const ProjectStyles = createGlobalStyle`
   }
 
   a {
-    color: #007faf;
+    color: #666;
+    text-decoration: underline;
     &:hover {
-      text-decoration: underline;
+      color: black;
     }
   }
 
