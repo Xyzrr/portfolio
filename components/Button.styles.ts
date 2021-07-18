@@ -13,6 +13,7 @@ export const Group = styled.div`
 
 export const Wrapper = styled.a`
   display: flex;
+  text-decoration: none;
   gap: 8px;
   align-items: center;
   padding: 8px 16px;
