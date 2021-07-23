@@ -19,24 +19,36 @@ import Button, { ButtonGroup } from "../components/Button";
   ]}
 />
 
-I always wanted to make a Minecraft-like voxel engine for the web. There's something satisfying about it; you get an infinitely vast, organic-feeling world from a small amount of modular code. So for fun, I made a barebones voxel engine with the help of [Axel Setyanto](https://github.com/laxels).
+I always wanted to make a Minecraft-like voxel engine for the web. There's something satisfying about it; you get an infinitely vast, organic-feeling world from a small amount of modular code. So for fun, I made a barebones voxel engine with the help of [Axel Setyanto](https://github.com/laxels). It uses [Three](https://threejs.org/) for rendering and contains its own "physics engine" optimized for voxel worlds.
 
-## Key Learnings
+## Challenges
 
-### Perlin noise is a godsend for procedural generation.
+### Making the world infinite
 
-Perlin noise works like a fragment shader; it's a pure function that, given a coordinate, returns a value in constant time. This allows you to deterministically generate a piece of terrain in any location without knowing anything about its surroundings.
+Finite worlds are relatively straightforward. You can decide what shapes and structures you want and simply sprinkle them about the world. It'll take a long time to do the initial generation, but it's a one-off job. This is the approach taken by Terraria and Dwarf Fortress.
 
-### Biomes aren't discrete.
+Infinite worlds are different; you can't store an infinite world in memory, so it needs to be lazy initialized. Wherever the player goes, you generate the world around them. This creates a challenge in maintaining continuity of the world. If you first generate the two ends of a river, how do you make sure they'll connect?
 
-[details tbd]
+The cleanest solution is to design a pure function that tells you what voxel belongs at a given coordinate without any other context. The most famous function used for doing this is Perlin noise, which returns a single value between 0 and 1 given an N-dimensional coordinate. Here's what it looks like mapped onto a small 2D square:
 
-### Chunks are a necessity.
+<Gallery
+  sources={["https://storage.googleapis.com/john-portfolio/voxels/perlin.jpg"]}
+/>
 
-I tried quite hard to avoid dividing the world into 16x16x256 chunks the way Minecraft does, because I felt like there had to be a more elegant option. But as I learned more about how GPU's work, I realized chunking was the only practical way to render an infinite world. If each block were its own mesh, there would be too many calls to drawElements. It turns out that drawing many triangles via a single drawElements call is much faster than drawing the same number of triangles via multiple drawElements calls. If the entire world were a single mesh, it would need to constantly morph as blocks are added and removed, which turns out to be impractical due to the way vertex buffers work. So we need to compromise by having each chunk be a mesh. There's few enough chunks for the number of drawElements calls to be acceptable, and each mesh is small enough to be rapidly reconstructed from scratch after a modifcation.
+By composing functions like Perlin noise, you can generate a chunk of the world without knowing anything about its surroundings. In other words, you get random access to an infinite world.
 
-### Structures that cross chunk boundaries are problematic.
+### Performance
 
-[details tbd]
+I tried quite hard to avoid dividing the world into 16x16x256 chunks the way Minecraft does, because I felt like there had to be a more elegant option. But as I learned more about how GPU's work, I realized chunking was the only practical way to render an infinite world.
+
+If each voxel had its own mesh, there would be too many calls to drawElements. It turns out that drawing many triangles via a single drawElements call is much faster than drawing the same number of triangles via multiple drawElements calls.
+
+If the entire world were a single mesh, it would need to constantly morph as blocks are added and removed, which turns out to be impractical due to the way vertex buffers work. So we need to compromise by having each chunk be a mesh. There's few enough chunks for the number of drawElements calls to be acceptable, and each mesh is small enough to be rapidly reconstructed from scratch after a modifcation.
+
+I ended up dividing the world into 32x32x32 chunks instead of Minecraft's 16x16x256. Minecraft probably had good reason to generate entire vertical slices of the world at once, but I wanted the world to be infinite in all directions, so cubic chunks made the most sense.
+
+Chunking alone didn't solve all the performance problems. Building the meshes for a hundred chunks took about a half a second, which is too long to freeze a program for; I needed web workers. That turned out to be surprisingly frustrating. Hopefully this is fixed by the time you're reading this, but when I worked on the voxel world, [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) had extremely limited browser support. This meant that my web workers couldn't share memory with the main process. But copying chunks to send over to web workers turned out to be too slow. So I had to transfer _permission_ to read chunks back and forth between the main process and web workers, which was finnicky because generating the mesh for a chunk required information about adjacent chunks.
+
+Fortunately the problem was solvable and world generation is no longer a performance bottleneck.
 
 </ProjectLayout>
