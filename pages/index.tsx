@@ -129,7 +129,7 @@ export const Home: React.FC = () => {
 
   React.useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      setIntroOpacity(Math.max(0, 1 - window.scrollY / 64));
+      setIntroOpacity(Math.max(0, 1 - window.scrollY / 72));
     });
   });
 
@@ -142,7 +142,12 @@ export const Home: React.FC = () => {
       </Head>
 
       <main>
-        <S.Intro style={{ opacity: introOpacity }}>
+        <S.Intro
+          style={{
+            opacity: introOpacity,
+            // filter: `blur(${(1 - introOpacity) * 4}px)`,
+          }}
+        >
           <S.Container>
             <S.IntroContent>
               <S.Title>Projects</S.Title>
