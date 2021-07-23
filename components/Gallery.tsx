@@ -1,6 +1,9 @@
 import * as S from "./Gallery.styles";
+import { CSSProperties } from "styled-components";
 
 interface GalleryProps {
+  className?: string;
+  style?: CSSProperties;
   sources: string[];
   bordered?: boolean;
   before?: boolean;
@@ -8,19 +11,26 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({
+  className,
+  style,
   sources,
   bordered,
   before,
   wide,
 }) => {
   return (
-    <S.OuterWrapper before={before} wide={wide}>
+    <S.OuterWrapper
+      before={before}
+      wide={wide}
+      className={className}
+      style={style}
+    >
       {before && <S.BeforeHeader>BEFORE</S.BeforeHeader>}
       <S.Wrapper bordered={bordered}>
-        {sources.map((source) => {
+        {sources.map((source, i) => {
           if (source.includes("youtu.be")) {
             return (
-              <S.VideoEmbedContainer>
+              <S.VideoEmbedContainer key={i}>
                 <iframe
                   width="100%"
                   height="315"
@@ -38,14 +48,21 @@ const Gallery: React.FC<GalleryProps> = ({
 
           if (source.endsWith(".mov") || source.endsWith(".mp4")) {
             return (
-              <div>
-                <video src={source} autoPlay muted loop playsInline></video>
+              <div key={i}>
+                <video
+                  key={i}
+                  src={source}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                ></video>
               </div>
             );
           }
 
           return (
-            <div>
+            <div key={i}>
               <img src={source} />
             </div>
           );
