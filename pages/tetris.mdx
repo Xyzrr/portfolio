@@ -27,7 +27,7 @@ If you're wondering why we chose to use Go on the frontend, we don't have a grea
 
 Go uses a garbage collector, and WebAssembly doesn't have garbage collection built in. So any Go application compiled to WebAssembly needs to include a garbage collector, making it take a minimum of 3MB, which is quite large for a website's script.
 
-The way that Go interfaces Javascript is also strange. When using Rust for WebAssembly, the Rust code essentially serves as a library of functions that can be called from Javascript. I expected Go to be similar. Instead, with Go you essentially write a separate that runs in parallel with your Javascript, using channels to communicate. This isn't a big problem because you can architect it to behave essentially like a library, but it is somewhat more awkward.
+The way that Go interfaces with Javascript is also strange. When using Rust for WebAssembly, the Rust code essentially serves as a library of functions that can be called from Javascript. I expected Go to be similar. Instead, with Go you essentially write a separate that runs in parallel with your Javascript, using channels to communicate. This isn't a big problem because you can architect it to behave essentially like a library, but it is somewhat more awkward.
 
 ### React is slow.
 
