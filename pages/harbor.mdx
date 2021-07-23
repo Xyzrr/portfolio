@@ -49,13 +49,13 @@ Electron's security practices are confusing because they're constantly evolving.
 
 ## Key Learnings
 
-### When using Electron, you can almost always use the native capabilities you need, but they may be finicky and undocumented.
+### Everything is possible but hard with Electron.
 
-For Harbor, we used multi-window management, screen recording, notifications, the Tray API, the powerMonitor API, process forking, AppleScript, and more. Virtually every feature required diving deep into Github issues and other forums to unravel obscure behaviors. I would have greatly benefitted from having a friend with deep Electron experience, so if you need me to be that friend now, let me know.
+When using Electron, you can almost always use the native capabilities you need, but they may be finicky and undocumented. For Harbor, we used multi-window management, screen recording, notifications, the Tray API, the powerMonitor API, process forking, AppleScript, and more. Virtually every feature required diving deep into Github issues and other forums to unravel obscure behaviors. I would have greatly benefitted from having a friend with deep Electron experience, so if you need me to be that friend now, let me know.
 
-### Desktop app design has an important difference from web app design: you have complete control over the screen space.
+### Desktop app design is different from web.
 
-Desktop apps can open multiple windows, control their sizes and positions, and even make them non-rectangular. Web apps, on the other hand, need to fill the browser, which is sized and positioned solely by the user.
+The most important difference from a UI design perspective is that you have complete control over the screen space. Desktop apps can open multiple windows, control their sizes and positions, and even make them non-rectangular. Web apps, on the other hand, need to fill the browser, which is sized and positioned solely by the user.
 
 We made extensive use of this control in Harbor. The most obvious example is the way a user's video slides in from the right side of your screen when they get close to you.
 
