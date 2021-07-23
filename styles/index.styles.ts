@@ -7,6 +7,9 @@ export const Container = styled.div`
 
 export const Intro = styled.div`
   margin-bottom: 48px;
+  position: sticky;
+  top: 0;
+  z-index: -1;
 `;
 
 export const IntroContent = styled.div`

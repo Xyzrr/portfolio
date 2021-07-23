@@ -1,5 +1,6 @@
 import * as S from "../styles/index.styles";
 
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import moment from "moment";
@@ -124,6 +125,14 @@ while (projects.length > 0) {
 }
 
 export const Home: React.FC = () => {
+  const [introOpacity, setIntroOpacity] = React.useState(1);
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      setIntroOpacity(Math.max(0, 1 - window.scrollY / 64));
+    });
+  });
+
   return (
     <>
       <Head>
@@ -133,7 +142,7 @@ export const Home: React.FC = () => {
       </Head>
 
       <main>
-        <S.Intro>
+        <S.Intro style={{ opacity: introOpacity }}>
           <S.Container>
             <S.IntroContent>
               <S.Title>Projects</S.Title>
