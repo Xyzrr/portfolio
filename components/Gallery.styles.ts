@@ -49,6 +49,7 @@ export const Wrapper = styled.div<{
   overflow: hidden;
   gap: 16px;
   align-items: center;
+  justify-content: center;
   flex-flow: row nowrap;
 
   img,
