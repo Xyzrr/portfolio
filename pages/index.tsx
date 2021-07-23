@@ -161,7 +161,9 @@ export const Home: React.FC = () => {
                         }
                       >
                         <S.ProjectImage>
-                          {project.imageSrc.substr(-3) === "mp4" ? (
+                          {["mp4", "mov"].includes(
+                            project.imageSrc.substr(-3)
+                          ) ? (
                             <video
                               src={project.imageSrc}
                               autoPlay
