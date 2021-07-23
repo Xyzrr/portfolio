@@ -27,7 +27,7 @@ I always wanted to make a Minecraft-like voxel engine for the web. There's somet
 
 Finite worlds are relatively straightforward. You can decide what shapes and structures you want and simply sprinkle them about the world. It'll take a long time to do the initial generation, but it's a one-off job. This is the approach taken by Terraria and Dwarf Fortress.
 
-Infinite worlds are different; you can't store an infinite world in memory, so it needs to be lazy initialized. Wherever the player goes, you generate the world around them. This creates a challenge in maintaining continuity of the world. If you first generate the two ends of a river, how do you make sure they'll connect?
+Infinite worlds are different; you can't pre-generate infinite data, so it needs to be lazy initialized. Wherever the player goes, you generate the world around them. This creates a challenge in maintaining continuity. If you first generate the two ends of a river, how do you make sure they'll connect?
 
 The cleanest solution is to design a pure function that tells you what voxel belongs at a given coordinate without any other context. The most famous function used for doing this is Perlin noise, which returns a single value between 0 and 1 given an N-dimensional coordinate. Here's what it looks like mapped onto a small 2D square:
 
