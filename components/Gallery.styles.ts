@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { redirect } from "next/dist/next-server/server/api-utils";
 
 export const VideoEmbedContainer = styled.div`
   position: relative;
@@ -14,9 +15,37 @@ export const VideoEmbedContainer = styled.div`
   }
 `;
 
-export const Wrapper = styled.div<{ bordered?: boolean; wide?: boolean }>`
+export const OuterWrapper = styled.div<{ before?: boolean; wide?: boolean }>`
   display: flex;
+  flex-direction: column;
+  width: fit-content;
   margin: 0 auto 16px;
+  ${(props) =>
+    props.before &&
+    css`
+      background: rgb(253, 50, 74);
+      padding: 4px;
+    `};
+
+  width: min(100vw - 128px, 716px);
+  @media (max-width: 768px) {
+    width: min(100vw - 64px, 716px);
+  }
+
+  ${(props) =>
+    props.wide &&
+    css`
+      width: min(100vw - 64px, 972px);
+      @media (max-width: 768px) {
+        width: min(100vw - 32px, 972px);
+      }
+    `}
+`;
+
+export const Wrapper = styled.div<{
+  bordered?: boolean;
+}>`
+  display: flex;
   overflow: hidden;
   gap: 16px;
   align-items: center;
@@ -28,11 +57,6 @@ export const Wrapper = styled.div<{ bordered?: boolean; wide?: boolean }>`
     display: block;
   }
 
-  width: min(100vw - 128px, 716px);
-  @media (max-width: 768px) {
-    width: min(100vw - 64px, 716px);
-  }
-
   ${(props) =>
     props.bordered &&
     css`
@@ -42,13 +66,11 @@ export const Wrapper = styled.div<{ bordered?: boolean; wide?: boolean }>`
         border-radius: 4px;
       }
     `}
+`;
 
-  ${(props) =>
-    props.wide &&
-    css`
-      width: min(100vw - 64px, 972px);
-      @media (max-width: 768px) {
-        width: min(100vw - 32px, 972px);
-      }
-    `}
+export const BeforeHeader = styled.div`
+  color: white;
+  font-weight: 600;
+  margin-bottom: 2px;
+  text-align: center;
 `;
