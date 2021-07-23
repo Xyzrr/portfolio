@@ -60,6 +60,7 @@ export const Wrapper = styled.div<{
   ${(props) =>
     props.bordered &&
     css`
+      iframe,
       img,
       video {
         border: 1px solid #ddd;

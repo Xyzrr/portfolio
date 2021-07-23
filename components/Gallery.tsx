@@ -28,6 +28,20 @@ const Gallery: React.FC<GalleryProps> = ({
       {before && <S.BeforeHeader>BEFORE</S.BeforeHeader>}
       <S.Wrapper bordered={bordered}>
         {sources.map((source, i) => {
+          if (source.includes("figma.com")) {
+            return (
+              <S.VideoEmbedContainer key={i}>
+                <iframe
+                  height="450"
+                  width="800"
+                  src={`https://www.figma.com/embed?embed_host=astra&url=${source}`}
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </S.VideoEmbedContainer>
+            );
+          }
+
           if (source.includes("youtu.be")) {
             return (
               <S.VideoEmbedContainer key={i}>
