@@ -15,6 +15,7 @@ const ReportHero: React.FC<ReportHeroProps> = ({ className }) => {
         loop
         playsInline
       />
+      <S.Overlay />
     </S.Wrapper>
   );
 };

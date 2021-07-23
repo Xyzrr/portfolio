@@ -42,6 +42,7 @@ export const ProjectsRow = styled.div`
 `;
 
 export const ProjectImage = styled.div`
+  background: #f2f2f2;
   overflow: hidden;
   height: fit-content;
   & > div,

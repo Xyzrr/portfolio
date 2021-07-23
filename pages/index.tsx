@@ -129,7 +129,7 @@ export const Home: React.FC = () => {
       <Head>
         <title>John Qian</title>
         <meta name="description" content="Product and Eng" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main>
