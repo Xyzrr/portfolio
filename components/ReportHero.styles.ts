@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   position: relative;
 
   video {
-    background: white;
+    background: rgba(255, 255, 255, 0.5);
     object-position: top;
     margin: 0 auto;
     object-fit: cover;
