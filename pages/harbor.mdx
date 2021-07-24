@@ -10,7 +10,7 @@ import Button, { ButtonGroup } from "../components/Button";
   </Button>
 </ButtonGroup>
 
-I love having my coworkers around when I work. So when pandemic hit, I spent a lot of time on video chat. But traditional video chat gets uncomfortable with more than 5 people in a room because there's no natural way break into smaller conversations like there is in real life. Harbor was my attempt to solve that. It's a desktop app that lives in your menu bar and allows you to exist in a virtual 2D space where you can roam around with up to 200 coworkers at once, but only see and hear the few people nearby.
+I love having my coworkers around when I work. So when pandemic hit, I spent a lot of time on video chat. But traditional video chat gets uncomfortable with more than 5 people in a room because there's no natural way break into smaller conversations like there is in real life. Harbor was my attempt to solve that. It's a desktop app that lives in your menu bar and allows you to exist in a virtual 2D space where you can roam around with up to 200 coworkers at once, but only see and hear the few people nearby. I received design help from [Carey Phelps](https://careyphelps.com/) and engineering help from [Brandon Wang](https://github.com/coconut750750).
 
 <Gallery
   style={{ marginTop: 32 }}
@@ -20,15 +20,33 @@ I love having my coworkers around when I work. So when pandemic hit, I spent a l
   ]}
 />
 
-For a full list of features, see the [marketing page](https://www.harbor.chat/).
+For a full list of features, see the [marketing page](https://www.harbor.chat/). Or watch this video demo of an early prototype which contained most of the features already, albeit without polish:
+
+<Gallery sources={["https://youtu.be/AEOU3Z9p8oM"]} />
+
+## Challenges
+
+### Video chat
+
+I started by trying to implement my own video chat infrastructure off of the open source library [Mediasoup](https://mediasoup.org/). It quickly became evident that this was going to be more effort than it was worth to start out, so I tried the SaaS solution from Twilio. It turned out to be terrible; even on 200Mb/s wifi, the latency was often >1 second and the screen sharing framerate was <5fps. And of course, customer support was bureaucratic. So I turned to the fledgling startup [Daily](https://www.daily.co/), which turned out to be better than Twilio in almost all dimensions. But it wasn't without problems.
+
+Daily allowed clients to specify which call participants they want to receive streams from, but not which participants they want to _send_ streams to. My use case would have greatly benefitted from the latter because a client should only send streams to nearby participants. I was forced to instead make clients opt out of receiving streams from faraway participants, which presents a security problem because any user could hack their client to listen in on distant participants without them knowing.
+
+Unfortunately I was never able to solve this problem; the only way would have been to roll my own infrastructure.
 
 ## Hardest decisions
+
+### Peer to peer vs. Centralized server
+
+P2p intuitively made sense for this project because you only need to be connected to the few users you're close to. It would allow a virtually unlimited number of users to coexist in the same world, since the server wouldn't be doing much work. And it would relieve user worries of being spied on.
+
+But I couldn't do p2p because sometimes you need to broadcast to everyone in the room at once. That would mean O(N) uplink bandwidth in a p2p architecture, which is unsustainable in large groups.
+
+So I went with [SFU](https://voximplant.com/blog/an-introduction-to-selective-forwarding-units) architecture instead, which is easier on bandwidth requirements at the cost of being extremely expensive. I suspect that the high cost is actually prohibitive at scale and unsolvable, seeing that [gather.town](https://www.gather.town/) actually switched to p2p after using an SFU. I'm curious how they approached the broadcasting problem with p2p.
 
 ### Moving the map to the menu bar
 
 In my initial prototype, the map view and the user tiles (the rectangles on the right containing camera feeds) were always in the same window.
-
-<Gallery sources={["https://youtu.be/AEOU3Z9p8oM"]} />
 
 This was simple and easy to understand. The problem was that most of the time, user tiles were much more important to see than the map. You don't need to see where everyone is located all the time. They're a background status, like available wifi connections. So I decided put the map view in the same location as the wifi status: in the menu bar.
 
@@ -42,7 +60,7 @@ This was simple and easy to understand. The problem was that most of the time, u
   ]}
 />
 
-I had originally planned on using animated avatars to represent people, as seen on the left, because it opens up possibilities for body language. But when I decided to tuck the space inside the Tray, I realized that an avatar based design is too cluttered for the tiny window. Profile pictures, though more stilted and less flexible, convey identity much more efficiently.
+I had originally planned on using animated avatars to represent people, as seen on the left, because it opens up possibilities for body language. But when I decided to tuck the space inside the menu bar, I realized that an avatar based design is too cluttered for the tiny window. Profile pictures, though more stilted and less flexible, convey identity much more efficiently.
 
 ### Remote vs. Local
 
