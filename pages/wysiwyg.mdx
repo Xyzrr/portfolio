@@ -31,13 +31,13 @@ Secondly, the text editing experience was an afterthought, since generally only 
 
 Lastly, reports weren't designed to be collaborative; only the author of a report could edit it.
 
-We saw an opportunity to enable researchers to quickly publish their research to the world by sharing the reports that they were already creating for internal use. But for this to work, we needed to make reports presentable, suitable for longform rich text, and collaborative.
+We saw an opportunity to enable researchers to quickly publish their research to the world using the reports that they were already creating for internal use. But for this to work, we needed to make reports presentable, suitable for longform rich text, and collaborative.
 
 ## Process?
 
 We iterated on reports for the entire 2+ years I was at W&B. Because reports already had many active users, we chose to solve one problem at a time and maintain backwards compatibility at each step.
 
-Being a startup, we didn't have a consistent process. I would always do the design and share it with the Shawn (CTO) and Carey (Head of Product) for feedback and approval. I designed some features via Figma mocks, others via written specifications. Sometimes I implemented the design myself, sometimes I led a team of 3 engineers. We conducted user interviews as necessary.
+Being a startup, our process was ad-hoc. I would always do the design and share it with the Shawn (CTO) and Carey (Head of Product) for feedback and approval. I designed some features via Figma mocks, others via written specifications. Sometimes I implemented the design myself, sometimes I coordinated with [Altay Guvench](https://www.linkedin.com/in/altay/) and/or [Axel Setyanto](https://www.linkedin.com/in/axelsetyanto/) on the implementation. We conducted user interviews as necessary.
 
 ## Inspiration
 
@@ -63,14 +63,20 @@ We also borrowed from Notion the slash menu, used for adding anything that doesn
 
 ### Realtime collaboration vs. async collaboration
 
-Realtime collaboration is now the gold standard for document editors, set forth by tools like Google Docs and Notion. But our reports architecture wasn't designed for realtime collaboration, so implementing it would have required a complete rewrite. Instead, we opted for a git-like system. When you edit a report, you create a private copy of it which you can then save onto the master report.
+Realtime collaboration is now the gold standard for document editors, set forth by tools like Google Docs and Notion. And it's really cool and fun to implement. But our reports architecture wasn't designed for realtime collaboration, so implementing it would have required tremendous refactors. As much as I wanted to do it, it was more prudent to first solve the lower hanging fruit of letting multiple users work on the same document at all.
+
+This turned out to be more complex than I had anticipated. What do you do when a user tries to edit a report while another user is already editing it?
+
+The simplest possible solution would be to lock everyone else out while a user is editing a report. This is the solution employed by Webflow. But because we used Webflow for our marketing site, we knew that this solution creates a terrible user experience. The problem is that it's too easy to accidentally block someone from editing the site, because you may forget that the tab is still open and Webflow has no way to tell whether you're really done editing.
+
+After some deliberation, I decided to adopt a git-like system. When you edit a report, you create a draft copy of it private to yourself, like a local clone of a repository. Each user with edit access can have their own private draft of a report. As you edit a private draft, it's autosaved so that you can make long-running edits. When you're ready to publish your changes, you can merge into the "master" report, and you'll be informed of any potential merge conflicts.
 
 <Gallery
   sources={["https://storage.googleapis.com/john-portfolio/wysiwyg/drafts.mov"]}
   bordered
 />
 
-Later on I implemented a proof-of-concept of realtime collaboration. It drew delight but probably won't see production for awhile.
+Later on I quietly implemented a proof-of-concept of realtime collaboration, just for fun. It drew delight from the team but probably won't see production for awhile.
 
 <Gallery
   sources={[
@@ -94,6 +100,14 @@ We initially opted to default to wide text since longform text was uncommon. But
 
 ### Markdown vs. WYSIWYG
 
-Text editing was initially all markdown based because it was easier to implement and the user base is very technical. However, Markdown isn't designed to be used for documents with complex interactive visualizations. We tried various hacks to get it mostly working, but ultimately decided that WYSIWYG was the only way to get the user experience we really wanted.
+Report text editing was initially all markdown based because it was easier to implement and the user base is very technical. Historically, technical users have expressed a [visceral hatred towards WYSIWYG editors](https://news.ycombinator.com/item?id=21589647).
+
+However, Markdown doesn't support complex interactive visualizations. We initially tried to work around this by allowing users to add separate Markdown sections and visualization sections, never the twain shall meet. Unfortunately this had crippling side effects:
+
+- Switching between preview and display mode of a Markdown section would cause the entire rest of the document to bounce up and down, especially when images were present.
+- You couldn't easily move the cursor across a visualization section, cmd+A would only highlight the active Markdown section, etc.; a report didn't feel like a single cohesive document.
+- Dropbox Paper-style collapsing headings were virtually impossible to implement in a sane way.
+
+Ultimately we decided that WYSIWYG was the only way to get the user experience we really wanted. But for users who preferred Markdown, we supported inserting Markdown blocks that behaved like the old Markdown sections and looked indistinguishable from content made with WYSIWYG. We then created an optional path for users to convert their old Markdown sections into WYSIWYG, either one block at a time or all at once.
 
 </ProjectLayout>
