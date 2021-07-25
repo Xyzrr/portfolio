@@ -6,7 +6,7 @@ interface GalleryProps {
   style?: CSSProperties;
   sources: string[];
   bordered?: boolean;
-  before?: boolean;
+  frame?: "before" | "prototype";
   wide?: boolean;
 }
 
@@ -15,17 +15,17 @@ const Gallery: React.FC<GalleryProps> = ({
   style,
   sources,
   bordered,
-  before,
+  frame,
   wide,
 }) => {
   return (
     <S.OuterWrapper
-      before={before}
+      frame={frame}
       wide={wide}
       className={className}
       style={style}
     >
-      {before && <S.BeforeHeader>BEFORE</S.BeforeHeader>}
+      {frame && <S.BeforeHeader>{frame}</S.BeforeHeader>}
       <S.Wrapper bordered={bordered}>
         {sources.map((source, i) => {
           if (source.includes("figma.com")) {

@@ -15,15 +15,18 @@ export const VideoEmbedContainer = styled.div`
   }
 `;
 
-export const OuterWrapper = styled.div<{ before?: boolean; wide?: boolean }>`
+export const OuterWrapper = styled.div<{
+  frame?: "before" | "prototype";
+  wide?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   width: fit-content;
   margin: 0 auto 16px;
   ${(props) =>
-    props.before &&
+    props.frame &&
     css`
-      background: rgb(253, 50, 74);
+      background: ${props.frame === "before" ? "rgb(253, 50, 74)" : "#256bdb"};
       padding: 4px;
     `};
 
@@ -75,4 +78,5 @@ export const BeforeHeader = styled.div`
   font-weight: 600;
   margin-bottom: 2px;
   text-align: center;
+  text-transform: uppercase;
 `;
