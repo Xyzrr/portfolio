@@ -13,7 +13,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
-        ></link>
+        />
+        <script src="fullstory-snippet.js" />
       </Head>
       <Component {...pageProps} />
     </>
