@@ -28,11 +28,11 @@ For a full list of features, see the [marketing page](https://www.harbor.chat/).
 
 ### Video chat
 
-I started by trying to implement my own video chat infrastructure off of the open source library [Mediasoup](https://mediasoup.org/). It quickly became evident that this was going to be more effort than it was worth to start out, so I tried the SaaS solution from Twilio. It turned out to be terrible; even on 200Mb/s wifi, the latency was often >1 second and the screen sharing framerate was <5fps. And of course, customer support was bureaucratic. So I turned to the fledgling startup [Daily](https://www.daily.co/), which turned out to be better than Twilio in almost all dimensions. But it wasn't without problems.
+I started by trying to implement my own video chat infrastructure off of the open source library [Mediasoup](https://mediasoup.org/). Gradually I realized that this would be too large an undertaking for an MVP, so I turned to SaaS. I started with [Twilio Programmable Video](https://www.twilio.com/video). It turned out to have abysmal performance; even on 200Mb/s wifi, the latency was often >1 second and the screen sharing framerate was <5fps. Customer support said they didn't think this was normal, but couldn't help me because I was paying less than $10,000 a month. So I turned to the fledgling startup [Daily](https://www.daily.co/), which turned out to be better than Twilio in almost all dimensions. Sadly it had one serious problem:
 
-Daily allowed clients to specify which call participants they want to receive streams from, but not which participants they want to _send_ streams to. My use case would have greatly benefitted from the latter because a client should only send streams to nearby participants. I was forced to instead make clients opt out of receiving streams from faraway participants, which presents a security problem because any user could hack their client to listen in on distant participants without them knowing.
+Daily allowed me to specify client-side which call participants to receive streams from, but not which participants to _send_ streams to. The latter would have been perfect for my use case because a client should only send streams to nearby participants. Without send-side control, I had to use receive-side control, which presents a security problem because any user could hack their client to listen in on distant participants without them knowing.
 
-Unfortunately I was never able to solve this problem; the only way would have been to roll my own infrastructure.
+Unfortunately there were only two ways to fix this problem: wait for Daily to support send-side control, or roll my own infrastructure. I took a break on the project before resolving this.
 
 ## Hardest decisions
 
@@ -70,7 +70,7 @@ Electron's security practices are confusing because they're constantly evolving.
 
 ### Everything is possible but hard with Electron.
 
-When using Electron, you can almost always use the native capabilities you need, but they may be finicky and undocumented. For Harbor, we used multi-window management, screen recording, notifications, the Tray API, the powerMonitor API, process forking, AppleScript, and more. Virtually every feature required diving deep into Github issues and other forums to unravel obscure behaviors. I would have greatly benefitted from having a friend with deep Electron experience, so if you need me to be that friend now, let me know.
+When using Electron, you can almost always use the native capabilities you need, but they may be finicky and undocumented. For Harbor, we used multi-window management, screen recording, notifications, the Tray API, the powerMonitor API, process forking, AppleScript, and more. Virtually every feature required diving deep into Github issues and other forums to unravel obscure behaviors. Many of the issues I experienced were still being actively discussed or had solutions just discovered a couple months ago. I would have greatly benefitted from having a friend with deep Electron experience, so if you need me to be that friend now, let me know.
 
 ### Desktop app design is different from web.
 
