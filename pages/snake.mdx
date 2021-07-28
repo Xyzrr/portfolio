@@ -12,8 +12,8 @@ import Button, { ButtonGroup } from "../components/Button";
 
 I grew interested in reinforcement learning after reading DeepMind's [paper](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf) on how they made a single agent that could learn to competently play 6 different Atari games using raw video input. Their approach was simple but brilliant: they took the standard Q-learning algorithm and swapped its lookup table with a convolutional neural network. This allowed Q-learning to be applied to an infinite and continous state space.
 
-To cement my understanding of the algorithm, I applied it to the classic Snake game. I used Keras for the neural net and trained it in a [custom OpenAI Gym environment](https://github.com/Xyzrr/rl-snake/blob/master/gym_snake/envs/snake_env.py). And of course, I used Weights & Biases to track my experiments.
+To cement my understanding of the algorithm, I applied it to the classic Snake game. I used Keras for the convolutional neural net and trained it in a [custom OpenAI Gym environment](https://github.com/Xyzrr/rl-snake/blob/master/gym_snake/envs/snake_env.py). And of course, I used Weights & Biases to track my experiments.
 
-I wasn't able to perfectly solve Snake like I had hoped, but it's still pretty cool to watch. I'm now running the trained model in the background of my [home page](https://johnqian.com). It's secretly interactive; you can temporarily override the AI's choices using the arrow keys.
+I wasn't able to perfectly solve Snake like I had hoped, but it's still pretty neat to watch. I'm now running the trained model in the background of my [home page](https://johnqian.com). It's secretly interactive; you can temporarily override the AI's choices using the arrow keys.
 
 </ProjectLayout>
