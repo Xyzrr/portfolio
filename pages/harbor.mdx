@@ -62,7 +62,7 @@ This was simple and easy to understand. The problem was that most of the time, u
 
 I had originally planned on using animated avatars to represent people, as seen on the left, because it opens up possibilities for body language. But when I decided to tuck the space inside the menu bar, I realized that an avatar based design is too cluttered for the tiny window. Profile pictures, though more stilted and less flexible, convey identity much more efficiently.
 
-### Remote vs. Local
+### Remote resources vs. local resources
 
 Electron's security practices are confusing because they're constantly evolving. Slack wrote a [very helpful article](https://slack.engineering/interops-labyrinth-sharing-code-between-web-electron-apps/) explaining why your Electron app shouldn't just be a browser into your web app (Path 1: The Shortcut and Path 2: Remote Isolation). However, many startups are doing exactly that because it's much easier and faster than the alternatives. Moreover, many Electron features like [context isolation](https://www.electronjs.org/docs/tutorial/context-isolation) are being added that make Path 2 easier to pull off. I opted to go the recommended way (Path 3: Local Resources) but it's still unclear whether it was worth the cost in development velocity.
 
