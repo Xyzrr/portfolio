@@ -8,6 +8,12 @@ import Button, { ButtonGroup } from "../components/Button";
   <Button icon="play_arrow" href="https://2018.halite.io/play/?game_id=5355837">
     Demo
   </Button>
+  <Button
+    icon="code"
+    href="https://github.com/Xyzrr/halite-3/blob/master/MyBot.py"
+  >
+    Code
+  </Button>
 </ButtonGroup>
 
 <Gallery
@@ -18,8 +24,34 @@ import Button, { ButtonGroup } from "../components/Button";
 
 Two Sigma annually runs a very fun AI programming competition called [Halite](https://halite.io/). I competed in the third edition and ranked [#29](https://2018.halite.io/user/?user_id=8432) of ~4000 players, putting me at #3 among US university students.
 
-I didn't use any machine learning for my bot. Instead I used a sloppy heuristic to estimate the value of being in a cell, and made each ship greedily move to the highest value adjacent cell each turn. The 2 seconds per turn limit turned out to be an obstacle to my approach due to the sheer amount of data I was processing each turn. So my secret sauce was using [numpy](https://numpy.org/) to process 2D data faster.
+From the [official website](https://2018.halite.io/learn-programming-challenge/game-overview):
 
-I'll upload my code here once I find it.
+> Halite III is a resource management game in which players build and command ships that explore the ocean and collect halite. Ships use halite as an energy source, and the player with the most stored halite at the end of the game is the winner.
+>
+> Players begin play with a shipyard, and can use collected halite to build new ships. To efficiently collect halite, players must devise a strategy based on building ships and dropoff points. Ships can explore the ocean, collect halite, and store it in the shipyard or in dropoff points. Players interact by seeking inspiring competition, or by colliding ships to send both to the bottom of the sea.
+
+Unlike most other bots, my bot didn't have hard states like "collecting halite" and "returning to base". Instead, I used a heuristic to estimate the quality of a location on the map for each ship given the ship's halite_amount and greedily moved to the highest quality adjacent location every turn. Many factors went into the heuristic, one being that when halite_amount is high, it's more attractive to be closer to home and away from enemies.
+
+My main trick was simply processing a lot of data. When considering how good a location is for mining, every tile of halite on the map matters, but closer halite matters more. More precisely, the importance of a tile is inversely proportional to the square of its distance to the location in consideration. With this in mind, my heuristic made extensive use of this matrix and the dot product:
+
+```
+dropoff_weight_matrix = np.array([
+    [0   , 0.1 , 0.2 , 0.3 , 0.43, 0.48, 0.53, 0.48, 0.43, 0.3 , 0.2 , 0.1 , 0   ],
+    [0.1 , 0.2 , 0.3 , 0.43, 0.48, 0.53, 0.59, 0.53, 0.48, 0.43, 0.3 , 0.2 , 0.1 ],
+    [0.2 , 0.3 , 0.43, 0.48, 0.53, 0.59, 0.63, 0.59, 0.53, 0.48, 0.43, 0.3 , 0.2 ],
+    [0.3 , 0.43, 0.48, 0.53, 0.59, 0.63, 0.73, 0.63, 0.59, 0.53, 0.48, 0.43, 0.3 ],
+    [0.43, 0.48, 0.53, 0.59, 0.63, 0.73, 0.81, 0.73, 0.63, 0.59, 0.53, 0.48, 0.43],
+    [0.48, 0.53, 0.59, 0.63, 0.73, 0.81, 0.9 , 0.81, 0.73, 0.63, 0.59, 0.53, 0.48],
+    [0.53, 0.59, 0.63, 0.73, 0.81, 0.9 , 1   , 0.9 , 0.81, 0.73, 0.63, 0.59, 0.53],
+    [0.48, 0.53, 0.59, 0.63, 0.73, 0.81, 0.9 , 0.81, 0.73, 0.63, 0.59, 0.53, 0.48],
+    [0.43, 0.48, 0.53, 0.59, 0.63, 0.73, 0.81, 0.73, 0.63, 0.59, 0.53, 0.48, 0.43],
+    [0.3 , 0.43, 0.48, 0.53, 0.59, 0.63, 0.73, 0.63, 0.59, 0.53, 0.48, 0.43, 0.3 ],
+    [0.2 , 0.3 , 0.43, 0.48, 0.53, 0.59, 0.63, 0.59, 0.53, 0.48, 0.43, 0.3 , 0.2 ],
+    [0.1 , 0.2 , 0.3 , 0.43, 0.48, 0.53, 0.59, 0.53, 0.48, 0.43, 0.3 , 0.2 , 0.1 ],
+    [0   , 0.1 , 0.2 , 0.3 , 0.43, 0.48, 0.53, 0.48, 0.43, 0.3 , 0.2 , 0.1 , 0   ]
+])
+```
+
+I had to use [numpy](https://numpy.org/) to compute dot products because we were restricted to 2 second of compute time per turn, which was too little time to do this much multiplication in pure Python.
 
 </ProjectLayout>

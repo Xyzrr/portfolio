@@ -11,6 +11,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Inconsolata&amp;display=swap"
+          rel="stylesheet"
+        />
+        <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
         />

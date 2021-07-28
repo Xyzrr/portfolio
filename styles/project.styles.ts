@@ -5,6 +5,34 @@ const ProjectStyles = createGlobalStyle`
     padding-bottom: 40vh;
   }
 
+  blockquote {
+    margin-left: auto;
+    margin-right: auto;
+    width: min(100vw - 128px, 716px);
+    p {
+      padding-left: 16px;
+      border-left: 4px solid #eee;
+      color: #888;
+      &:not(:last-child) {
+        padding-bottom: 16px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  pre {
+    margin-left: auto;
+    margin-right: auto;
+    width: min(100vw - 128px, 716px);
+    code {
+      display: block;
+      background: #f6f6f6;
+      border: 1px solid #ddd;
+      padding: 12px; 
+      font-family: Inconsolata;
+    }
+  }
+
   h1,
   h2,
   h3,
