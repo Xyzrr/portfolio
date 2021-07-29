@@ -20,6 +20,12 @@ const ProjectStyles = createGlobalStyle`
     }
   }
 
+  code {
+    font-family: Inconsolata;
+    background: #f6f6f6;
+    border: 1px solid #ddd;
+  }
+
   pre {
     margin-left: auto;
     margin-right: auto;
@@ -37,7 +43,7 @@ const ProjectStyles = createGlobalStyle`
   h2,
   h3,
   p,
-  ul {
+  ul, ol {
     margin-left: auto;
     margin-right: auto;
     width: min(100vw - 128px, 716px);
@@ -90,7 +96,7 @@ const ProjectStyles = createGlobalStyle`
     h2,
     h3,
     p,
-    ul {
+    ul, ol {
       width: min(100vw - 64px, 716px);
     }
   }
