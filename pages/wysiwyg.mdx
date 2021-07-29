@@ -10,7 +10,7 @@ import Button, { ButtonGroup } from "../components/Button";
     icon="sports_esports"
     href="https://wandb.ai/wandb/alors%20on%20danse/reports/A-New-Way-to-Create-Reports--VmlldzozOTg0OTg"
   >
-    Demo
+    Example report
   </Button>
 </ButtonGroup>
 
@@ -20,26 +20,79 @@ At Weights & Biases, I led the design and development of the Reports project, a 
 
 ## The Problem
 
-When I joined W&B, reports already existed, but they were designed for only one purpose: sharing progress updates internally with teammates. As a result, little effort was put into presentation; reports were not visually clean or mobile friendly.
+When I joined W&B, reports already existed, but they were designed for only one purpose: sharing progress updates internally with teammates. As a result, it was designed for quick, one-off, unpolished notes.
 
 <Gallery
   sources={["https://storage.googleapis.com/john-portfolio/wysiwyg/old.png"]}
   frame="before"
 />
 
-Secondly, the text editing experience was an afterthought, since generally only short snippets and captions were needed.
+We saw an opportunity to enable researchers to quickly publish their research to the world using the reports that they were already creating for internal use. Some users were already trying to using reports this way, but were having a hard time. To create a good publishing experience, we needed to solve 3 problems:
 
-Lastly, reports weren't designed to be collaborative; only the author of a report could edit it.
+1. Make reports visually clean, readable, and mobile friendly.
+2. Create a delightful longform text editing experience.
+3. Make reports collaborative.
 
-We saw an opportunity to enable researchers to quickly publish their research to the world using the reports that they were already creating for internal use. But for this to work, we needed to make reports presentable, suitable for longform rich text, and collaborative.
+## Cleaning up the look
 
-## Process?
+First, we needed to fix the low hanging fruit. A clear problem was that there were no separate "edit" and "view" modes, so all viewers would see all the editing widgets even if they didn't have permission to use them. We solved this by creating a view mode where the editing features were hidden and the boundaries between panels were less pronounced.
 
-We iterated on reports for the entire 2+ years I was at W&B. Because reports already had many active users, we chose to solve one problem at a time and maintain backwards compatibility at each step.
+[insert image here]
 
-Being a startup, our process was ad-hoc. I would always do the design and share it with the Shawn (CTO) and Carey (Head of Product) for feedback and approval. I designed some features via Figma mocks, others via written specifications. Sometimes I implemented the design myself, sometimes I coordinated with [Altay Guvench](https://www.linkedin.com/in/altay/) and/or [Axel Setyanto](https://www.linkedin.com/in/axelsetyanto/) on the implementation. We conducted user interviews as necessary.
+Next we tackled a more fundamental problem.
 
-## Inspiration
+Initially, a report was essentially a collection of panels. More precisely, a report was a collection of sections, and a section was a collection of panels along with a dataset to hydrate the panels. A panel could contain either a chart, a table, or text.
+
+This worked for sharing quick notes with coworkers, but was an unfriendly experience for readers without context. Readers expect content to have a linear flow so their eyes always know where to go next. We noticed that to accomodate this, many of our users were creating sections that only contained full-width text panels to closer resemble a blog post.
+
+There were several problems here:
+
+1. The text was too wide. Text is only readable at 45-75 characters per line.
+2. The panel borders were disorienting.
+3. Creating a new section with one full-width text panel was a 5 click + 2 drag process.
+
+We tried hacking around problems 1 and 2 by setting a max-width on the text inside panels and removing borders specifically for full-width text panels, but that created surprising and confusing behavior. Ultimately we needed text to be outside of panels.
+
+So our next approach was to make text "first-class"; in between any two panel sections, you could insert text, and this text would have a smaller max-width than the panel sections.
+
+[insert image here]
+
+This essentially gave reports the look we wanted. However, underneath the veneer, the editing experience was still a mess.
+
+## Going WYSIWYG
+
+Text editing was initially all Markdown based. In many ways, this made sense. Our users were very technical, so they were mostly familiar with Markdown, as it's the language of popular tools like Github. And historically, technical users have expressed a [strong preference for Markdown over WYISWYG](https://news.ycombinator.com/item?id=21589647).
+
+However, Markdown wasn't made for complex documents with rich interactive visualizations. We had worked around this by having Markdown sections and panel sections be logically separate. Unfortunately this had frustrating UX problems:
+
+- Markdown sections needed their own separate edit/preview modes, which conflated with the edit/preview mode of the document as a whole.
+- Switching between edit and preview mode of a Markdown section would cause the entire rest of the document to bounce up and down, especially when images were present.
+- You couldn't easily move the cursor across a visualization section, cmd+A would only highlight the active Markdown section, etc.; a report didn't feel like a single cohesive document.
+- Dropbox Paper-style collapsing headings were virtually impossible to implement in a sane way.
+- Moving a panel grid by one paragraph required cutting and pasting the paragraph into a different Markdown section.
+
+Ultimately we decided that WYSIWYG was the only way to get the user experience we really wanted. Historically, customized WYSIWYG editors have been extremely challenging to build. But after surveying the open source landscape and asking my friends at other companies what they used for their text editors, it seemed like we had better options than fighting with `contentEditable` directly. The two most promising libraries were [Prosemirror](https://prosemirror.net/) and [Slate](https://www.slatejs.org/examples/richtext). I did a long writeup on their similarities and differences, but here's the gist:
+
+- Both libraries were designed to be extremely extensible; this is what made them the most viable options for us.
+- Slate was designed for React. ProseMirror implemented its own view architecture, which made it significantly larger and less friendly to use with React.
+- ProseMirror was more mature than Slate; Slate was officially still in beta.
+
+It was a tough decision, but I decided we should take the risk and run with Slate. Part of my justification was that I had already read Slate's source code in its entirety because it was so small and elegant. So whatever bugs we encountered, I was confident I could deal with it, forking the library if need be.
+
+In retrospect, it's still unclear whether this was the right call. We ran into numerous bugs and performance problems that don't seem to be present in ProseMirror, and the library maintainers have not been patching them quickly. However, we were able to work around these problems with relatively clean and modular code, and we learned a lot about the internals of Slate in the process. [Axel Setyanto](https://www.linkedin.com/in/axelsetyanto/), who gave reports vital performance improvements, has said, "Reports has become my favorite product to work on". So while it was a struggle, we don't regret it.
+
+## Features
+
+Slate truly comes as a blank slate; it gives you the ability to edit plain text and insert new paragraphs, but all rich text features like bold and headings are on you. Open source Slate plugins were scarce and outdated, so we ended up implementing everything ourselves, including:
+
+- Notion-style slash menu to insert blocks
+- Hovering toolbar for inline formatting
+- Paper-style nested collapsing headings
+- Code with syntax highlighting
+- Images
+- Video embeds
+- LaTeX editor
+- Drag-drop to reorder blocks
 
 Notion and Dropbox Paper were our biggest inspirations in the Reports design. We loved the way they auto-convert Markdown formatting, so we borrowed that idea in Reports:
 
@@ -59,13 +112,29 @@ We also borrowed from Notion the slash menu, used for adding anything that doesn
   bordered
 />
 
-## Hardest decisions
+## Visualizations
 
-### Realtime collaboration vs. async collaboration
+Admist all the exciting rich text editing features, it was important to not forget the heart of reports: the visualizations. WYSIWYG opened up the potential to interweave text and visualizations in ways that were previously impossible, so I wrote a document detailing some ideas on that. However, our CTO Shawn had a fundamentally new architecture for visualizations in the works, so the future was uncertain to the point where it wasn't worth making drastic changes to the behavior of visualizations. So our short-term goal with visualizations was simple: make them not worse than before.
 
-Realtime collaboration is now the gold standard for document editors, set forth by tools like Google Docs and Notion. And it's really cool and fun to implement. But our reports architecture wasn't designed for realtime collaboration, so implementing it would have required tremendous refactors. As much as I wanted to do it, it was more prudent to first solve the lower hanging fruit of letting multiple users work on the same document at all.
+I did end up making one improvement to visualizations that I felt was necessary: undo/redo. The rest of the document supported undo/redo, so I felt it would be surprising if visualizations didn't, even though they never did before. The process of integrating visualizations with Slate's undo/redo system deserves its own blog post, but I'll just say it wasn't pretty.
 
-This turned out to be more complex than I had anticipated. What do you do when a user tries to edit a report while another user is already editing it?
+## Maintaining backwards compatibility
+
+Because reports had many active users from the start, we chose to maintain backwards compatibility with very revision. We never released a "Reports version 2" that made old reports obsolete.
+
+This presented a challenge because the changes we made were so sweeping. I won't go into the technical migration details because they're too messy. But I'll talk briefly about how we transitioned from Markdown to WYSIWYG.
+
+First, we supported Markdown blocks within the WYSIWYG document so that users who preferred Markdown could continue to use it.
+
+Next, my teammate [Altay Guvench](https://www.linkedin.com/in/altay/) created a function to automatically convert Markdown into our custom JSON structure. Rather than applying it automatically to every report, we decided to make it opt-in. We migrated old reports into our new structure, but left the Markdown sections as Markdown blocks. We then displayed a banner message above old reports asking if the authors would like to auto-convert the content into WYSIWYG. Alternatively, users could convert their Markdown blocks one at a time.
+
+## Going collaborative
+
+There exists a third-party plugin in the Slate ecosystem called slate-collaborative that essentially provides drop-in realtime collaboration. However, our effort to solve collaboration unfortunately preceded our usage of Slate. Users were clawing for collaboration from the get-go because reports were initially extremely restrictive; only the author of a report could edit it at all.
+
+Realtime collaboration was out of the question because it would have taken too long. It requires certain architectural decisions to be made up-front, so we would have needed a complete rewrite to support it. Asynchronous collaboration was a more prudent problem to solve.
+
+Still, asynchronous collaboration turned out to be more complex than I had anticipated. What do you do when a user tries to edit a report while another user is already editing it?
 
 The simplest possible solution would be to lock everyone else out while a user is editing a report. This is the solution employed by Webflow. But because we used Webflow for our marketing site, we knew that this solution creates a terrible user experience. The problem is that it's too easy to accidentally block someone from editing the site, because you may forget that the tab is still open and Webflow has no way to tell whether you're really done editing.
 
@@ -76,7 +145,7 @@ After some deliberation, I decided to adopt a git-like system. When you edit a r
   bordered
 />
 
-Later on I quietly implemented a proof-of-concept of realtime collaboration, just for fun. It drew delight from the team but probably won't see production for awhile.
+Later on, after we implemented WYSIWYG, I quietly tested out `slate-collaborative` to make a proof-of-concept of realtime collaboration. It drew delight from the team but probably won't see production for awhile.
 
 <Gallery
   sources={[
@@ -84,6 +153,8 @@ Later on I quietly implemented a proof-of-concept of realtime collaboration, jus
   ]}
   frame="prototype"
 />
+
+## Controversial design details
 
 ### Default text width
 
@@ -98,16 +169,16 @@ Text is most readable at less than 70 characters per line. But visualizations wa
 
 We initially opted to default to wide text since longform text was uncommon. But as we grew Reports into more of a publishing platform, we switched the default text width to be readable.
 
-### Markdown vs. WYSIWYG
+### Drag handle on the right or left
 
-Report text editing was initially all markdown based because it was easier to implement and the user base is very technical. Historically, technical users have expressed a [visceral hatred towards WYSIWYG editors](https://news.ycombinator.com/item?id=21589647).
+[details tbd]
 
-However, Markdown doesn't support complex interactive visualizations. We initially tried to work around this by allowing users to add separate Markdown sections and visualization sections, never the twain shall meet. Unfortunately this had crippling side effects:
+### Serif vs. Sans Serf
 
-- Switching between preview and display mode of a Markdown section would cause the entire rest of the document to bounce up and down, especially when images were present.
-- You couldn't easily move the cursor across a visualization section, cmd+A would only highlight the active Markdown section, etc.; a report didn't feel like a single cohesive document.
-- Dropbox Paper-style collapsing headings were virtually impossible to implement in a sane way.
+[details tbd]
 
-Ultimately we decided that WYSIWYG was the only way to get the user experience we really wanted. But for users who preferred Markdown, we supported inserting Markdown blocks that behaved like the old Markdown sections and looked indistinguishable from content made with WYSIWYG. We then created an optional path for users to convert their old Markdown sections into WYSIWYG, either one block at a time or all at once.
+## Closing takeaways
+
+Thanks to libraries like Slate, making a collaborative document editor with rich interactive visualizations is much easier than it ever was before. Thank you to Ian Storm Taylor for writing such a lovely library and giving it away for free. And thank you to Axel Setyanto, Altay Guvench, Kat Shuford, Haruka Tabuchi, and others for continuing to maintain Reports.
 
 </ProjectLayout>
