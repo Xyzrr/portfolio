@@ -44,7 +44,8 @@ const ProjectStyles = createGlobalStyle`
   h3,
   p,
   ul, 
-  ol {
+  ol, 
+  nav {
     margin-left: auto;
     margin-right: auto;
     width: min(100vw - 128px, 716px);
@@ -69,10 +70,26 @@ const ProjectStyles = createGlobalStyle`
     margin-bottom: 10px;
   }
 
+  nav {
+    margin-top: 96px;
+    line-height: 20px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    a {
+      font-weight: normal;
+      text-decoration: none;
+      color: #888;
+      &:hover {
+        color: #aaa;
+      }
+    }
+  }
+
   h1 {
     font-size: 48px;
     margin-bottom: 16px;
-    margin-top: 64px;
+    margin-top: 0;
   }
 
   h2 {
