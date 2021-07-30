@@ -106,7 +106,7 @@ const ProjectStyles = createGlobalStyle`
   }
 
   a {
-    color: black;
+    color: #111;
     font-weight: 600;
     text-decoration: underline;
     &:hover {
