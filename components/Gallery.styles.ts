@@ -22,7 +22,7 @@ export const OuterWrapper = styled.div<{
   display: flex;
   flex-direction: column;
   width: fit-content;
-  margin: 0 auto 16px;
+  margin: 0 auto 20px;
   ${(props) =>
     props.frame &&
     css`
@@ -50,7 +50,7 @@ export const Wrapper = styled.div<{
 }>`
   display: flex;
   overflow: hidden;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
