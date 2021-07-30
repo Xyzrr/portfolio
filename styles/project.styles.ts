@@ -43,20 +43,30 @@ const ProjectStyles = createGlobalStyle`
   h2,
   h3,
   p,
-  ul, ol {
+  ul, 
+  ol {
     margin-left: auto;
     margin-right: auto;
     width: min(100vw - 128px, 716px);
   }
 
-  p {
-    line-height: 24px;
-  }
-
   h1,
   h2,
   h3 {
-    font-weight: 300;
+    font-weight: 600;
+    color: #111;
+  }
+
+  p, ul, ol {
+    line-height: 30px;
+    font-size: 17px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  li {
+    margin-bottom: 10px;
   }
 
   h1 {
@@ -66,29 +76,24 @@ const ProjectStyles = createGlobalStyle`
   }
 
   h2 {
-    font-size: 36px;
-    margin-bottom: 8px;
+    font-size: 30px;
+    margin-bottom: 14px;
+    margin-top: 40px;
   }
 
   h3 {
-    font-size: 20px;
-    margin-bottom: 4px;
-  }
-
-  p {
-    margin-top: 0;
+    font-size: 17px;
+    line-height: 30px;
+    margin-bottom: 8px;
   }
 
   a {
-    color: #666;
+    color: black;
+    font-weight: 600;
     text-decoration: underline;
     &:hover {
-      color: black;
+      color: #444;
     }
-  }
-
-  li {
-    margin-bottom: 12px;
   }
 
   @media (max-width: 768px) {
