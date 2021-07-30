@@ -29,7 +29,7 @@ Finite worlds are relatively straightforward. You can decide what shapes and str
 
 Infinite worlds are different; you can't pre-generate infinite data, so it needs to be lazy initialized. Wherever the player goes, you generate the world around them. This creates a challenge in maintaining continuity. If you first generate the two ends of a river, how do you make sure they'll connect?
 
-The cleanest solution is to design a pure function that tells you what voxel belongs at a given coordinate without any other context. The most famous function used for doing this is Perlin noise, which returns a single value between 0 and 1 given an N-dimensional coordinate. Here's what it looks like mapped onto a small 2D square:
+The cleanest solution is to design a pure function that tells you what voxel belongs at a given coordinate without any other context. The most famous function used for doing this is [Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise), which returns a single value between 0 and 1 given an N-dimensional coordinate. Here's what it looks like mapped onto a small 2D square:
 
 <Gallery
   sources={["https://storage.googleapis.com/john-portfolio/voxels/perlin.jpg"]}

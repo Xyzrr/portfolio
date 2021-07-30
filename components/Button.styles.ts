@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Group = styled.div`
   display: flex;
   width: min(100vw - 128px, 716px);
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
   gap: 12px;
 
   @media (max-width: 768px) {
