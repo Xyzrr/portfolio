@@ -76,11 +76,11 @@ const ProjectStyles = createGlobalStyle`
     font-size: 17px;
     display: flex;
     align-items: center;
-    color: #888;
+    color: #999;
     a {
       font-weight: normal;
       text-decoration: none;
-      color: #888;
+      color: #999;
       &:hover {
         color: #aaa;
       }

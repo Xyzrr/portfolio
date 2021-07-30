@@ -129,7 +129,7 @@ export const Home: React.FC = () => {
 
   React.useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      setIntroOpacity(Math.max(0, 1 - window.scrollY / 72));
+      setIntroOpacity(window.scrollY === 0 ? 1 : 0);
     });
   });
 

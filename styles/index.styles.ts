@@ -10,6 +10,7 @@ export const Intro = styled.div`
   position: sticky;
   top: 0;
   z-index: -1;
+  transition: opacity 0.2s;
 `;
 
 export const IntroContent = styled.div`
@@ -20,11 +21,12 @@ export const IntroContent = styled.div`
 export const Title = styled.h1`
   font-weight: 300;
   font-size: 28px;
+  color: #111;
   margin: 0 auto 16px;
 `;
 
 export const Description = styled.div`
-  color: #555;
+  color: #333;
   margin: 0 auto;
 `;
 
@@ -67,13 +69,13 @@ export const ProjectText = styled.div`
 
 export const ProjectTitle = styled.h2`
   font-weight: 400;
-  color: #444;
+  color: #111;
   margin: 0;
   font-size: 16px;
 `;
 
 export const ProjectDate = styled.span`
-  color: #aaa;
+  color: #999;
   font-size: 16px;
   flex-shrink: 0;
 `;
