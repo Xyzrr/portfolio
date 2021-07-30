@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
-  font-style: oblique;
+  font-style: italic;
   .material-icons {
     margin-right: 8px;
     color: #666;

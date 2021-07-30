@@ -8,6 +8,7 @@ const Placeholder: React.FC<PlaceholderProps> = ({ className, children }) => {
   return (
     <S.Wrapper className={className}>
       <span className="material-icons">construction</span>
+      <span>TODO:&nbsp;</span>
       {children}
     </S.Wrapper>
   );
