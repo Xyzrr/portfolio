@@ -15,7 +15,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({ title, children }) => {
       </Head>
       <ProjectStyles />
       <nav>
-        <a href="/">Projects /</a>
+        <a href="/">Projects</a>&nbsp;/
       </nav>
       <h1>{title}</h1>
       {children}

@@ -76,6 +76,7 @@ const ProjectStyles = createGlobalStyle`
     font-size: 17px;
     display: flex;
     align-items: center;
+    color: #888;
     a {
       font-weight: normal;
       text-decoration: none;
