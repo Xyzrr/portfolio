@@ -119,7 +119,9 @@ const ProjectStyles = createGlobalStyle`
     h2,
     h3,
     p,
-    ul, ol {
+    ul, 
+    ol, 
+    nav {
       width: min(100vw - 64px, 716px);
     }
   }
