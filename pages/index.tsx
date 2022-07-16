@@ -94,11 +94,11 @@ const projects = [
     size: 1,
   },
   {
-    name: "Pre-University",
+    name: "Earlier stuff",
     publishedAt: "2017-09",
-    imageSrc: "/highschool.png",
+    imageSrc: "/earlystuff.png",
     imageSize: { width: 460, height: 256 },
-    href: "highschool",
+    href: "earlystuff",
     size: 1,
   },
 ];
