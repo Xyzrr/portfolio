@@ -7,6 +7,14 @@ import moment from "moment";
 
 const projects = [
   {
+    name: "Shuo Chinese",
+    publishedAt: "2022-01",
+    imageSrc: "https://storage.googleapis.com/john-portfolio/chinese/thumbnail.mp4",
+    imageSize: { width: 984, height: 655 },
+    href: "chinese",
+    size: 2,
+  },
+  {
     name: "Spatial Video Chat",
     publishedAt: "2021-05",
     imageSrc: "/harbor.png",
