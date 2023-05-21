@@ -9,7 +9,8 @@ const projects = [
   {
     name: "Shuo Chinese",
     publishedAt: "2022-01",
-    imageSrc: "https://storage.googleapis.com/john-portfolio/chinese/thumbnail.mp4",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/chinese/thumbnail.mp4",
     imageSize: { width: 984, height: 655 },
     href: "chinese",
     size: 2,
@@ -117,15 +118,13 @@ let currentRowSize = 0;
 
 while (projects.length > 0) {
   for (let i = 0; i < projects.length; i++) {
-    console.log("checking", i, projects[i].size);
     if (currentRowSize + projects[i].size <= 4) {
-      console.log(currentRowSize);
       currentRowSize += projects[i].size;
       currentRow.push(...projects.splice(i, 1));
       break;
     }
   }
-  if (currentRowSize === 4) {
+  if (currentRowSize === 4 || projects.length === 0) {
     rows.push(currentRow);
     currentRow = [];
     currentRowSize = 0;
@@ -133,14 +132,6 @@ while (projects.length > 0) {
 }
 
 export const Home: React.FC = () => {
-  const [introOpacity, setIntroOpacity] = React.useState(1);
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", (e) => {
-      setIntroOpacity(window.scrollY === 0 ? 1 : 0);
-    });
-  });
-
   return (
     <>
       <Head>
@@ -150,12 +141,7 @@ export const Home: React.FC = () => {
       </Head>
 
       <main>
-        <S.Intro
-          style={{
-            opacity: introOpacity,
-            // filter: `blur(${(1 - introOpacity) * 4}px)`,
-          }}
-        >
+        <S.Intro>
           <S.Container>
             <S.IntroContent>
               <S.Title>Projects</S.Title>
@@ -195,9 +181,11 @@ export const Home: React.FC = () => {
                             />
                           ) : (
                             <Image
+                              alt={project.name}
                               src={project.imageSrc}
                               width={project.imageSize.width}
                               height={project.imageSize.height}
+                              style={{ width: "100%", height: "auto" }}
                             />
                           )}
                         </S.ProjectImage>
