@@ -16,13 +16,14 @@ export interface ButtonProps {
   className?: string;
   icon?: string;
   href: string;
+  text: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ className, icon, href, children }) => {
+const Button: React.FC<ButtonProps> = ({ className, icon, href, text }) => {
   return (
     <S.Wrapper className={className} href={href} target="_blank">
       {icon && <span className="material-icons">{icon}</span>}
-      <span>{children}</span>
+      <span>{text}</span>
     </S.Wrapper>
   );
 };

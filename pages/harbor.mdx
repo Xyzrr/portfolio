@@ -6,12 +6,8 @@ import Button, { ButtonGroup } from "../components/Button";
 <ProjectLayout title="Harbor">
 
 <ButtonGroup>
-  <Button icon="public" href="https://www.harbor.chat/">
-    Website
-  </Button>
-  <Button icon="code" href="https://github.com/Xyzrr/harbor">
-    Code
-  </Button>
+  <Button icon="public" href="https://www.harbor.chat/" text="Website" />
+  <Button icon="code" href="https://github.com/Xyzrr/harbor" text="Code" />
 </ButtonGroup>
 
 I love having my coworkers around when I work. So when pandemic hit, I spent a lot of time on video chat. But traditional video chat gets uncomfortable with more than 5 people in a room because there's no natural way break into smaller conversations like there is in real life. Harbor was my attempt to solve that. It's a desktop app that lives in your menu bar and allows you to exist in a virtual 2D space where you can roam around with up to 200 coworkers at once, but only see and hear the few people nearby. I received design help from [Carey Phelps](https://careyphelps.com/) and engineering help from [Brandon Wang](https://github.com/coconut750750).
@@ -32,7 +28,7 @@ For a full list of features, see the [marketing page](https://www.harbor.chat/).
 
 ### Video chat
 
-I started by trying to implement my own video chat infrastructure off of the open source library [Mediasoup](https://mediasoup.org/). Gradually I realized that this would be too large an undertaking for an MVP, so I turned to SaaS. I started with [Twilio Programmable Video](https://www.twilio.com/video). It turned out to have abysmal performance; even on 200Mb/s wifi, the latency was often >1 second and the screen sharing framerate was <5fps. Customer support said they didn't think this was normal, but couldn't help because I was paying less than $10,000 a month. So I turned to the fledgling startup [Daily](https://www.daily.co/), which turned out to be better than Twilio in almost all dimensions. Sadly it had one serious problem:
+I started by trying to implement my own video chat infrastructure off of the open source library [Mediasoup](https://mediasoup.org/). Gradually I realized that this would be too large an undertaking for an MVP, so I turned to SaaS. I started with [Twilio Programmable Video](https://www.twilio.com/video). It turned out to have abysmal performance; even on 200Mb/s wifi, the latency was often >1 second and the screen sharing framerate was {'<'}5fps. Customer support said they didn't think this was normal, but couldn't help because I was paying less than $10,000 a month. So I turned to the fledgling startup [Daily](https://www.daily.co/), which turned out to be better than Twilio in almost all dimensions. Sadly it had one serious problem:
 
 Daily allowed me to specify client-side which call participants to receive streams from, but not which participants to _send_ streams to. The latter would have been perfect for my use case because a client should only send streams to nearby participants. Without send-side control, I had to use receive-side control, which presents a security problem because any user could hack their client to listen in on distant participants without them knowing.
 

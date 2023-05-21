@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { redirect } from "next/dist/next-server/server/api-utils";
 
 export const VideoEmbedContainer = styled.div`
   position: relative;
