@@ -7,6 +7,15 @@ import moment from "moment";
 
 const projects = [
   {
+    name: "Whybot",
+    publishedAt: "2023-02",
+    imageSrc:
+      "https://storage.googleapis.com/john-portfolio/whybot/thumbnail.mp4",
+    imageSize: { width: 984, height: 554 },
+    href: "whybot",
+    size: 2,
+  },
+  {
     name: "Shuo Chinese",
     publishedAt: "2022-01",
     imageSrc:

@@ -1,0 +1,30 @@
+import ProjectLayout from "../layouts/ProjectLayout";
+import Gallery from "../components/Gallery";
+import Button, { ButtonGroup } from "../components/Button";
+import Placeholder from "../components/Placeholder";
+
+<ProjectLayout title="Whybot">
+
+<ButtonGroup>
+  <Button
+    icon="sports_esports"
+    href="https://whybot-khaki.vercel.app"
+    text="Try it"
+  />
+</ButtonGroup>
+
+## Context
+
+This was a hackathon project by me and my friend [Vish Rajiv](https://github.com/vwrj). It [won](https://twitter.com/AqeelMeetsWorld/status/1650279974405042178?s=20) us the Angellist Agents hackathon. The goal was simply to find an interesting form of an LLM agent--something that uses an LLM's output to determine its next input, and is thus able to run indefinitely.
+
+## What is it?
+
+Whybot builds a recursive knowledge graph around a seed question. You seed it with a question, it answers it, then asks follow up questions, answers those, and on. It's good for getting a really deep dive into a topic.
+
+<Placeholder>Add pitch recording</Placeholder>
+
+## Challenges
+
+Making a parallel, streaming breadth-first-search that you can pause and resume was more tricky than I anticipated.
+
+</ProjectLayout>
